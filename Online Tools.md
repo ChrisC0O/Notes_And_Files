@@ -6,5 +6,5 @@ https://webtor.io/
 https://convertcase.net/
 
 
-#### Online .mb file Editor:
+#### Online .md file Editor:
 https://stackedit.io/app#
