@@ -1,4 +1,4 @@
 #### Create .exe with Pyinstaller:
-```sh
+```ps1
 pyinstaller -F --collect-data grapheme .\MAKE_MAPS.py --onefile
 ```
