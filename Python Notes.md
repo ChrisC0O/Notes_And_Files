@@ -14,3 +14,11 @@ import urllib.parse
 
 print(urllib.parse.quote("http://www.sample.com/", safe=""))
 ```
+
+
+### Get Unix time stamp:
+```py
+import time
+
+time.time()
+```
