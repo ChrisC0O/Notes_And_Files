@@ -27,3 +27,6 @@ https://www.teamviewer.com/en/download/windows/
 
 #### WinRAR Compress and Encrypt files:
 https://www.win-rar.com/download.html?&L=0
+
+#### Burp Suite (Monitor HTTP Requests from your Browser)
+[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) (Download Page)
