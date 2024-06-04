@@ -40,3 +40,7 @@
 
 #### Yt-dlp Video Downloader:
 >https://github.com/yt-dlp/yt-dlp
+
+
+#### GIMP (Open Source Photoshop)
+>https://www.gimp.org
