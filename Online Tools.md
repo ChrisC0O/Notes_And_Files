@@ -10,5 +10,9 @@
 >https://stackedit.io/app#
 
 
-#### Reddit content API
+#### Reddit content API:
 >https://www.pullpush.io/
+
+
+#### Online text editor and saver:
+https://pastebin.com/
