@@ -44,3 +44,7 @@
 
 #### GIMP (Open Source Photoshop)
 >https://www.gimp.org
+
+
+#### TrID - File Identifier:
+>https://www.mark0.net/soft-trid-e.html
