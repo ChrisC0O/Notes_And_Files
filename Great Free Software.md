@@ -48,3 +48,7 @@
 
 #### TrID - File Identifier:
 >https://www.mark0.net/soft-trid-e.html
+
+
+#### HxD - Hex Editor and Viewer (Used for binary files)
+>https://www.majorgeeks.com/files/details/hxd.html
