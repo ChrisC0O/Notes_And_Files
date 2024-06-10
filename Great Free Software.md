@@ -50,8 +50,12 @@
 >https://www.mark0.net/soft-trid-e.html
 
 
-#### HxD for Windows - Hex Editor and Viewer (Used for binary files)
+#### HxD - Hex Editor and Viewer (Windows)
 >https://www.majorgeeks.com/files/details/hxd.html
+
+
+#### Okteta - Hex Editor and Viewer (Linux)
+>https://apps.kde.org/okteta/
 
 
 #### Ninite - Install and Update All Your Programs at Once:
