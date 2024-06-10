@@ -1,8 +1,8 @@
-#### Great media player VLC:
+#### VLC - Great media player:
 >https://www.videolan.org/vlc/
 
 
-#### Lightweight image viewer:
+#### IrfanView - Lightweight image viewer:
 >https://www.irfanview.com/
 
 
@@ -14,35 +14,35 @@
 >https://sqlitebrowser.org/
 
 
-#### Free python IDE (Community Edition)
+#### PyCharm - Free python IDE (Community Edition)
 >https://www.jetbrains.com/pycharm/download/?section=windows
 
 
-#### Make virtual machines:
+#### VirtuelBox - Make virtual machines:
 >https://www.virtualbox.org/wiki/Downloads
 
 
-#### Remote Desktop (Works over internet)
+#### TeamViewer - Remote Desktop (Works over internet)
 >https://www.teamviewer.com/en/download/windows/
 
 
-#### WinRAR Compress and Encrypt files:
+#### WinRAR - Compress and Encrypt files:
 >https://www.win-rar.com/download.html?&L=0
 
 
-#### Burp Suite (Monitor HTTP Requests from your Browser)
+#### Burp Suite - (Monitor HTTP Requests from your Browser)
 >[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) (Download Page)
 
 
-#### FFMPEG Robust Video Converter:
+#### FFMPEG - Robust Video Converter:
 >https://www.ffmpeg.org/
 
 
-#### Yt-dlp Video Downloader:
+#### Yt-dlp - Video Downloader:
 >https://github.com/yt-dlp/yt-dlp
 
 
-#### GIMP (Open Source Photoshop)
+#### GIMP - (Open Source Photoshop)
 >https://www.gimp.org
 
 
@@ -50,5 +50,9 @@
 >https://www.mark0.net/soft-trid-e.html
 
 
-#### HxD - Hex Editor and Viewer (Used for binary files)
+#### HxD for Windows - Hex Editor and Viewer (Used for binary files)
 >https://www.majorgeeks.com/files/details/hxd.html
+
+
+#### Ninite - Install and Update All Your Programs at Once:
+>https://ninite.com/
