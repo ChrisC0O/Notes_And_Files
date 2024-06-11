@@ -3,7 +3,7 @@
 |1| VLC - Media Player:|https://www.videolan.org/vlc/ |
 |2| IrfanView - Lightweight image viewer:|https://www.irfanview.com/ |
 |3| CD Burner:|https://www.imgburn.com/ |
-|4| DB Browser for SQLite:|https://sqlitebrowser.org/ |
+|4| SQLite - DB Browser for SQL:|https://sqlitebrowser.org/ |
 |5| PyCharm - Free python IDE (Community Edition)|https://www.jetbrains.com/pycharm/download/?section=windows |
 |6| VirtuelBox - Make virtual machines:|https://www.virtualbox.org/wiki/Downloads |
 |7| TeamViewer - Remote Desktop (Works over internet)|https://www.teamviewer.com/en/download/windows/ |
