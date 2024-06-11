@@ -13,10 +13,10 @@
 |11|Yt-dlp|Video Downloader:|https://github.com/yt-dlp/yt-dlp  |
 |12|GIMP|(Open Source Photoshop)|https://www.gimp.org  |
 |13|TrID|File Identifier:|https://www.mark0.net/soft-trid-e.html  |
-|14|HxD|Hex Editor and Viewer (Windows)|https://www.majorgeeks.com/files/details/hxd.html  |
-|15|Okteta|Hex Editor and Viewer (Linux)|https://apps.kde.org/okteta/  |
+|14|HxD|Hex Editor and Viewer (Windows):|https://www.majorgeeks.com/files/details/hxd.html  |
+|15|Okteta|Hex Editor and Viewer (Linux):|https://apps.kde.org/okteta/  |
 |16|Ninite|Install and Update All Your Programs at Once:|https://ninite.com/  |
-|17|Everything|File Search tool (Windows)|https://www.voidtools.com/  |
+|17|Everything|File Search tool (Windows):|https://www.voidtools.com/  |
 |18|Qbittorrent|Free Opensource alternative to µTorrent:|https://www.qbittorrent.org/  |
 |19|Firefox|Internet Browser:|https://www.mozilla.org/  |
 |20|Nextcloud|Client-Server Software:|https://nextcloud.com/install/  |
