@@ -60,3 +60,12 @@
 
 #### Ninite - Install and Update All Your Programs at Once:
 >https://ninite.com/
+
+
+#### Everything - File Search tool (Windows)
+>https://www.voidtools.com/
+
+
+#### Qbittorrent - Free Opensource alternative to µTorrent:
+>https://www.qbittorrent.org/
+
