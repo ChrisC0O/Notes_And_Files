@@ -48,3 +48,12 @@
 |46|Alacritty|Terminal Emulator:|https://alacritty.org/ |
 |47|WinDirStat|Windows Disk Usage Statistics And Cleanup Tool:|[https://windirstat.net/](https://windirstat.net/download.html/) |
 |48|FreeTube|The Private YouTube Client:|https://freetubeapp.io/|
+|49|LMMS|Make Music. Alternative to FL Studio/ProTools:|https://lmms.io|
+|50|||
+|51|||
+|52|||
+|53|||
+|54|||
+|55|||
+|56|||
+|57|||
