@@ -2,5 +2,5 @@
 https://github.com/libvips/libvips/
 
 
-#### Great prosess line Libary for Python:
+#### Great prosess bar Libary for Python:
 https://pypi.org/project/alive-progress/
