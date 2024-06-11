@@ -1,71 +1,20 @@
-#### VLC - Great media player:
->https://www.videolan.org/vlc/
-
-
-#### IrfanView - Lightweight image viewer:
->https://www.irfanview.com/
-
-
-#### CD Burner:
->https://www.imgburn.com/
-
-
-#### DB Browser for SQLite:
->https://sqlitebrowser.org/
-
-
-#### PyCharm - Free python IDE (Community Edition)
->https://www.jetbrains.com/pycharm/download/?section=windows
-
-
-#### VirtuelBox - Make virtual machines:
->https://www.virtualbox.org/wiki/Downloads
-
-
-#### TeamViewer - Remote Desktop (Works over internet)
->https://www.teamviewer.com/en/download/windows/
-
-
-#### WinRAR - Compress and Encrypt files:
->https://www.win-rar.com/download.html?&L=0
-
-
-#### Burp Suite - (Monitor HTTP Requests from your Browser)
->[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) (Download Page)
-
-
-#### FFMPEG - Robust Video Converter:
->https://www.ffmpeg.org/
-
-
-#### Yt-dlp - Video Downloader:
->https://github.com/yt-dlp/yt-dlp
-
-
-#### GIMP - (Open Source Photoshop)
->https://www.gimp.org
-
-
-#### TrID - File Identifier:
->https://www.mark0.net/soft-trid-e.html
-
-
-#### HxD - Hex Editor and Viewer (Windows)
->https://www.majorgeeks.com/files/details/hxd.html
-
-
-#### Okteta - Hex Editor and Viewer (Linux)
->https://apps.kde.org/okteta/
-
-
-#### Ninite - Install and Update All Your Programs at Once:
->https://ninite.com/
-
-
-#### Everything - File Search tool (Windows)
->https://www.voidtools.com/
-
-
-#### Qbittorrent - Free Opensource alternative to µTorrent:
->https://www.qbittorrent.org/
-
+|| Programs | URL's |
+|--|--|--|
+|1|VLC - Great media player:|https://www.videolan.org/vlc/ |
+|2|IrfanView - Lightweight image viewer:|https://www.irfanview.com/ |
+|3|CD Burner:|https://www.imgburn.com/ |
+|4|DB Browser for SQLite:|https://sqlitebrowser.org/ |
+|5|PyCharm - Free python IDE (Community Edition)|https://www.jetbrains.com/pycharm/download/?section=windows |
+|6|VirtuelBox - Make virtual machines:|https://www.virtualbox.org/wiki/Downloads |
+|7|TeamViewer - Remote Desktop (Works over internet)|https://www.teamviewer.com/en/download/windows/ |
+|8|WinRAR - Compress and Encrypt files:|https://www.win-rar.com/download.html?&L=0 |
+|9|Burp Suite - (Monitor HTTP Requests from your Browser)|[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) (Download Page) |
+|10|FFMPEG - Robust Video Converter:|https://www.ffmpeg.org/ |
+|11|Yt-dlp - Video Downloader:|https://github.com/yt-dlp/yt-dlp |
+|12|GIMP - (Open Source Photoshop)|https://www.gimp.org |
+|13|TrID - File Identifier:|https://www.mark0.net/soft-trid-e.html |
+|14|HxD - Hex Editor and Viewer (Windows)|https://www.majorgeeks.com/files/details/hxd.html |
+|15|Okteta - Hex Editor and Viewer (Linux)|https://apps.kde.org/okteta/ |
+|16|Ninite - Install and Update All Your Programs at Once:|https://ninite.com/ |
+|17|Everything - File Search tool (Windows)|https://www.voidtools.com/ |
+|18|Qbittorrent - Free Opensource alternative to µTorrent:|https://www.qbittorrent.org/ |
