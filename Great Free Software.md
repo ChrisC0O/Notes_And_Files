@@ -1,14 +1,14 @@
-|#| Program: |Use:| URL: |
+|#| Program: |Use:| Url: |
 |--|--|--|--|
 |1|VLC|Media Player:|https://www.videolan.org/vlc/  |
-|2|IrfanView|Lightweight image viewer:|https://www.irfanview.com/  |
+|2|IrfanView|Lightweight Image Viewer:|https://www.irfanview.com/  |
 |3|CD Burner|Burn CD's:|https://www.imgburn.com/  |
 |4|SQLite|DB Browser for SQL:|https://sqlitebrowser.org/  |
-|5|PyCharm|Free python IDE (Community Edition):|https://www.jetbrains.com/pycharm/download/?section=windows  |
+|5|PyCharm|Python IDE (Community Edition):|[https://www.jetbrains.com/](https://www.jetbrains.com/pycharm/download/?section=windows) |
 |6|VirtuelBox|Make virtual machines:|https://www.virtualbox.org/wiki/Downloads  |
 |7|TeamViewer|Remote Desktop (Works over internet)|https://www.teamviewer.com/en/download/windows/  |
 |8|WinRAR|Compress and Encrypt files:|https://www.win-rar.com/download.html?&L=0  |
-|9|Burp Suite|(Monitor HTTP Requests from your Browser)|[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) (Download Page)  |
+|9|Burp Suite|(Monitor HTTP Requests from your Browser)|[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) |
 |10|FFMPEG|Robust Video Converter:|https://www.ffmpeg.org/  |
 |11|Yt-dlp|Video Downloader:|https://github.com/yt-dlp/yt-dlp  |
 |12|GIMP|(Open Source Photoshop)|https://www.gimp.org  |
@@ -35,7 +35,15 @@
 |33|Nmap|Network Scanner:|https://nmap.org/  |
 |34|Mpv|Media Player:|https://mpv.io/ |
 |35|Bitwarden|Password Manager:|https://bitwarden.com/ |
-|36|||
-|37|||
-|38|||
-|39|||
+|36|OpenShot|Video Editor:|https://www.openshot.org/ |
+|37|SyncThing|Syncs Files Between Two or More Devices:|https://syncthing.net/ |
+|38|OnlyOffice|Open Source Alternative to Office 365:|[https://www.onlyoffice.com/](https://www.onlyoffice.com/download-docs.aspx?from=default) |
+|39|Godot Engine|Open Source Game Engine:|https://godotengine.org/ |
+|40|Audacity|Audio Editing and Recording:|https://www.audacityteam.org/ |
+|41|EarTrumpet|Volume Control for Windows:|https://github.com/File-New-Project/EarTrumpet/ |
+|42|PeaZip|Open Source File Compression and Encryption:|https://peazip.github.io/ |
+|43|Hoppscotch|Open Source API Development Ecosystem:|https://hoppscotch.io/ |
+|44|DevToys|A Swiss Army Knife for Developers:|https://github.com/DevToys-app/DevToys |
+|45|IntelliJ|Java and Kotlin IDE (Community Edition):|[https://www.jetbrains.com/](https://www.jetbrains.com/idea/download/?section=windows/) |
+|46|Alacritty|Terminal Emulator:|https://alacritty.org/ |
+|47||||
