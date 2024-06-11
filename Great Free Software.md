@@ -18,3 +18,8 @@
 |16|Ninite - Install and Update All Your Programs at Once:|https://ninite.com/ |
 |17|Everything - File Search tool (Windows)|https://www.voidtools.com/ |
 |18|Qbittorrent - Free Opensource alternative to µTorrent:|https://www.qbittorrent.org/ |
+|19|Firefox - Internet Browser:|https://www.mozilla.org/ |
+|20| Nextcloud - Client-Server Software:|https://nextcloud.com/install/ |
+|21| Darktable -  Photography Workflow Application:|https://www.darktable.org/ |
+|22| LibreOffice - Open Source Microsoft Word:| https://www.libreoffice.org/ |
+|23| Yabai - Window Management Utility:|https://github.com/koekeishiya/yabai/ |
