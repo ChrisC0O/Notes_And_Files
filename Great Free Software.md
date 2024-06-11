@@ -49,11 +49,11 @@
 |47|WinDirStat|Windows Disk Usage Statistics And Cleanup Tool:|[https://windirstat.net/](https://windirstat.net/download.html/) |
 |48|FreeTube|The Private YouTube Client:|https://freetubeapp.io/|
 |49|LMMS|Make Music. Alternative to FL Studio/ProTools:|https://lmms.io|
-|50|||
-|51|||
-|52|||
-|53|||
-|54|||
-|55|||
-|56|||
-|57|||
+|50|x64dbg|Open Source x64/x32 Debugger for Windows:|https://x64dbg.com/ |
+|51|Neovim|Vim-based Text Editor:|https://neovim.io/|
+|52|Kdenlive|Open Source Video Editor:|https://kdenlive.org/|
+|53|Emacs|Text Editor|[https://www.gnu.org](https://www.gnu.org/software/emacs/) |
+|54||||
+|55||||
+|56||||
+|57||||
