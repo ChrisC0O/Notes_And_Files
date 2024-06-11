@@ -46,4 +46,5 @@
 |44|DevToys|A Swiss Army Knife for Developers:|https://github.com/DevToys-app/DevToys |
 |45|IntelliJ|Java and Kotlin IDE (Community Edition):|[https://www.jetbrains.com/](https://www.jetbrains.com/idea/download/?section=windows/) |
 |46|Alacritty|Terminal Emulator:|https://alacritty.org/ |
-|47||||
+|47|WinDirStat|Windows Disk Usage Statistics And Cleanup Tool:|[https://windirstat.net/](https://windirstat.net/download.html/) |
+|48|FreeTube|The Private YouTube Client:|https://freetubeapp.io/|
