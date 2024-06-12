@@ -52,7 +52,7 @@
 |50|x64dbg|Open Source x64/x32 Debugger for Windows:|https://x64dbg.com/ |
 |51|Neovim|Vim-based Text Editor:|https://neovim.io/ |
 |52|Kdenlive|Open Source Video Editor:|https://kdenlive.org/ |
-|53|Emacs|Text Editor|[https://www.gnu.org/](https://www.gnu.org/software/emacs/) |
+|53|Emacs|Text Editor:|[https://www.gnu.org/](https://www.gnu.org/software/emacs/) |
 |54|Insomnia|Open Source API Development Ecosystem:|https://github.com/Kong/insomnia?tab=readme-ov-file/ |
 |55|Consent-O-Matic|Consent Management Provider (Pop-ups and Cookies):|https://consentomatic.au.dk/ |
 |56|Wezterm|Terminal Emulator:|https://github.com/wez/wezterm/ |
