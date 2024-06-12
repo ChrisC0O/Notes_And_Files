@@ -6,12 +6,12 @@
 |4|SQLite|DB Browser for SQL:|https://sqlitebrowser.org/  |
 |5|PyCharm|Python IDE (Community Edition):|[https://www.jetbrains.com/](https://www.jetbrains.com/pycharm/download/?section=windows) |
 |6|VirtuelBox|Make virtual machines:|https://www.virtualbox.org/wiki/Downloads  |
-|7|TeamViewer|Remote Desktop (Works over internet)|https://www.teamviewer.com/en/download/windows/  |
+|7|TeamViewer|Remote Desktop (Free for Personal use)|https://www.teamviewer.com/en/download/windows/  |
 |8|WinRAR|Compress and Encrypt files:|https://www.win-rar.com/download.html?&L=0  |
-|9|Burp Suite|(Monitor HTTP Requests from your Browser)|[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) |
+|9|Burp Suite|Monitor HTTP Requests:|[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) |
 |10|FFMPEG|Robust Video Converter:|https://www.ffmpeg.org/  |
 |11|Yt-dlp|Video Downloader:|https://github.com/yt-dlp/yt-dlp  |
-|12|GIMP|(Open Source Photoshop)|https://www.gimp.org  |
+|12|GIMP|Image Manipulation (Open Source Photoshop):|https://www.gimp.org  |
 |13|TrID|File Identifier:|https://www.mark0.net/soft-trid-e.html  |
 |14|HxD|Hex Editor and Viewer (Windows):|https://www.majorgeeks.com/files/details/hxd.html  |
 |15|Okteta|Hex Editor and Viewer (Linux):|https://apps.kde.org/okteta/  |
