@@ -42,18 +42,31 @@
 |40|Audacity|Audio Editing and Recording:|https://www.audacityteam.org/ |
 |41|EarTrumpet|Volume Control for Windows:|https://github.com/File-New-Project/EarTrumpet/ |
 |42|PeaZip|Open Source File Compression and Encryption:|https://peazip.github.io/ |
-|43|Hoppscotch|Open Source API Development Ecosystem:|https://hoppscotch.io/ |
+|43|Hoppscotch|Open Source API Development Ecosystem (Web Based):|https://hoppscotch.io/ |
 |44|DevToys|A Swiss Army Knife for Developers:|https://github.com/DevToys-app/DevToys |
 |45|IntelliJ|Java and Kotlin IDE (Community Edition):|[https://www.jetbrains.com/](https://www.jetbrains.com/idea/download/?section=windows/) |
 |46|Alacritty|Terminal Emulator:|https://alacritty.org/ |
 |47|WinDirStat|Windows Disk Usage Statistics And Cleanup Tool:|[https://windirstat.net/](https://windirstat.net/download.html/) |
 |48|FreeTube|The Private YouTube Client:|https://freetubeapp.io/|
-|49|LMMS|Make Music. Alternative to FL Studio/ProTools:|https://lmms.io|
+|49|LMMS|Make Music. Alternative to FL Studio/ProTools:|https://lmms.io/|
 |50|x64dbg|Open Source x64/x32 Debugger for Windows:|https://x64dbg.com/ |
 |51|Neovim|Vim-based Text Editor:|https://neovim.io/|
 |52|Kdenlive|Open Source Video Editor:|https://kdenlive.org/|
-|53|Emacs|Text Editor|[https://www.gnu.org](https://www.gnu.org/software/emacs/) |
-|54||||
-|55||||
-|56||||
-|57||||
+|53|Emacs|Text Editor|[https://www.gnu.org/](https://www.gnu.org/software/emacs/) |
+|54|Insomnia|Open Source API Development Ecosystem:|https://github.com/Kong/insomnia?tab=readme-ov-file/ |
+|55|Consent-O-Matic|Consent Management Provider (Pop-ups and Cookies):|https://consentomatic.au.dk/ |
+|56|Wezterm|Terminal Emulator:|https://github.com/wez/wezterm/|
+|57|Hyperfine|A Command-line Benchmarking Tool:|https://github.com/sharkdp/hyperfine|
+|58|Atuin|Better Shell History:|https://atuin.sh/ |
+|59|Fd|User-friendly Alternative To 'find':|https://github.com/sharkdp/fd|
+|60|Ripgrep|Better Alternative to grep:|https://github.com/BurntSushi/ripgrep/ |
+|61|Fzf|A Command-line Fuzzy Finder:|https://github.com/junegunn/fzf/ |
+|62|Lazygit|Simple Terminal Ui For Git Commands:|https://github.com/jesseduffield/lazygit/ |
+|63|Ntfy|Send push notifications to your phone(GET/POST):|https://ntfy.sh/ |
+|64|Zoxide|A Smarter cd Command:|https://github.com/ajeetdsouza/zoxide/ |
+|65|Yazi|Fast Terminal File Manager:|https://github.com/sxyazi/yazi/ |
+|66|Rustdesk|Open Source Remote Desktop|https://github.com/rustdesk/rustdesk/ |
+|67|Anydesk|Remote Desktop|https://anydesk.com/en|
+|68||||
+|69||||
+|70||||
