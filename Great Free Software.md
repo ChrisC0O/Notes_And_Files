@@ -11,7 +11,7 @@
 |9|Burp Suite|Monitor HTTP Requests:|[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) |
 |10|FFMPEG|Robust Video Converter:|https://www.ffmpeg.org/ |
 |11|Yt-dlp|Video Downloader:|https://github.com/yt-dlp/yt-dlp/ |
-|12|GIMP|Image Manipulation (Open Source Photoshop):|https://www.gimp.org |
+|12|GIMP|Image Manipulation (Open Source Photoshop):|https://www.gimp.org/ |
 |13|TrID|File Identifier:|https://www.mark0.net/soft-trid-e.html |
 |14|HxD|Hex Editor and Viewer (Windows):|https://www.majorgeeks.com/files/details/hxd.html |
 |15|Okteta|Hex Editor and Viewer (Linux):|https://apps.kde.org/okteta/ |
