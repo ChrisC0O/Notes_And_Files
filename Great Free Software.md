@@ -4,10 +4,10 @@
 |2|IrfanView|Lightweight Image Viewer:|https://www.irfanview.com/  |
 |3|CD Burner|Burn CD's:|https://www.imgburn.com/  |
 |4|SQLite|DB Browser for SQL:|https://sqlitebrowser.org/  |
-|5|PyCharm|Python IDE (Community Edition):|[https://www.jetbrains.com/](https://www.jetbrains.com/pycharm/download/?section=windows) |
+|5|PyCharm|Python IDE (Community Edition):|[https://www.jetbrains.com/](https://www.jetbrains.com/pycharm/download/?section=windows)|
 |6|VirtuelBox|Make virtual machines:|https://www.virtualbox.org/wiki/Downloads  |
-|7|TeamViewer|Remote Desktop (Free for Personal use)|https://www.teamviewer.com/en/download/windows/  |
-|8|WinRAR|Compress and Encrypt files:|https://www.win-rar.com/download.html?&L=0  |
+|7|TeamViewer|Remote Desktop (Free for Personal use)|[https://www.teamviewer.com/](https://www.teamviewer.com/en/download/windows/) |
+|8|WinRAR|Compress and Encrypt files:|[https://www.win-rar.com/](https://www.win-rar.com/download.html?&L=0) |
 |9|Burp Suite|Monitor HTTP Requests:|[https://portswigger.net/](https://portswigger.net/burp/releases/professional-community-2024-4-5?requestededition=community&requestedplatform=) |
 |10|FFMPEG|Robust Video Converter:|https://www.ffmpeg.org/  |
 |11|Yt-dlp|Video Downloader:|https://github.com/yt-dlp/yt-dlp  |
