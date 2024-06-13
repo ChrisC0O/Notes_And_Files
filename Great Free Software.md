@@ -74,7 +74,7 @@
 |72|Git|Distributed Version Control (Github):|https://www.git-scm.com/ |
 |73|VCV Rack2|Virtual Eurorack Studio:|https://vcvrack.com/Rack/ |
 |74|Svtplay-dl|Video Downloader:|https://svtplay-dl.se/|
-|75||||
+|75|FreeFileSync|File Copy Synchronization:|https://freefilesync.org/|
 |76||||
 |77||||
 |78||||
