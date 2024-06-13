@@ -75,7 +75,7 @@
 |73|VCV Rack2|Virtual Eurorack Studio:|https://vcvrack.com/Rack/ |
 |74|Svtplay-dl|Video Downloader:|https://svtplay-dl.se/|
 |75|FreeFileSync|File Copy Synchronization:|https://freefilesync.org/|
-|76|Frame.io|Video Sharing With a Team|https://frame.io/ |
+|76|Directshare|In Browser Decentralized File Sharing:|https://directshare.io/ |
 |77||||
 |78||||
 |79||||
