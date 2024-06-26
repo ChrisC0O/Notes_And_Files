@@ -96,6 +96,7 @@
 |WinDirStat|Windows Disk Usage Statistics And Cleanup Tool:|[https://windirstat.net/](https://windirstat.net/download.html/) |
 |x64dbg|Open Source x64/x32 Debugger for Windows:|https://x64dbg.com/ |
 |7zip|Compress and Encrypt files:|https://www.7-zip.org/ |
+|Snappy Driver Installer| Find Drivers for your PC| https://sdi-tool.org/download/ |
 ### Developer Tools:
 |Program:|Use:|Url:|
 |:-|:-|:-|
