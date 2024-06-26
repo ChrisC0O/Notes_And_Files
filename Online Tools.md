@@ -15,4 +15,8 @@
 
 
 #### Online text editor and saver:
-https://pastebin.com/
+>https://pastebin.com/
+
+
+#### Get proxy list:
+>https://proxylist.geonode.com/api/proxy-list?limit=50&page=1&sort_by=lastChecked&sort_type=desc
