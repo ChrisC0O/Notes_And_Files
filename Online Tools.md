@@ -20,3 +20,7 @@
 
 #### Get proxy list:
 >https://proxylist.geonode.com/api/proxy-list?limit=50&page=1&sort_by=lastChecked&sort_type=desc
+
+
+#### Whats my IP | API:
+>https://api.myip.com
