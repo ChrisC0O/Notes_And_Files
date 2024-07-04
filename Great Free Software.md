@@ -15,6 +15,7 @@
 |OpenShot|Video Editor:|https://www.openshot.org/ |
 |Kdenlive|Open Source Video Editor:|https://kdenlive.org/ |
 |Svtplay-dl|Video Downloader:|https://svtplay-dl.se/|
+
 ### Graphics and Images:
 |Program:|Use:|Url:|
 |:-|:-|:-|
@@ -23,6 +24,7 @@
 |Darktable| Photography Workflow Application:|https://www.darktable.org/ |
 |Krita|Painting Program:|https://krita.org/ |
 |Inkscape|Vector Graphics Editor:|https://inkscape.org/  |
+
 ### Network:
 |Program:|Use:|Url:|
 |:-|:-|:-|
@@ -32,6 +34,7 @@
 |SyncThing|Syncs Files Between Two or More Devices:|https://syncthing.net/ |
 |FreeFileSync|File Copy Synchronization:|https://freefilesync.org/|
 |Directshare|In Browser Decentralized File Sharing:|https://directshare.io/ |
+
 ### Miscellaneous:
 |Program:|Use:|Url:|
 |:-|:-|:-|
@@ -43,6 +46,7 @@
 |Godot Engine|Open Source Game Engine:|https://godotengine.org/ |
 |EarTrumpet|Volume Control for Windows:|https://github.com/File-New-Project/EarTrumpet/ |
 |KiCad|Open Source Electronics Design Automation Suite:|https://www.kicad.org/ |
+
 ### Internet Browsing:
 |Program:|Use:|Url:|
 |:-|:-|:-|
@@ -50,6 +54,7 @@
 |FreeTube|The Private YouTube Client:|https://freetubeapp.io/ |
 |Consent-O-Matic|Consent Management Provider (Pop-ups and Cookies):|https://consentomatic.au.dk/ |
 |Waterfox|Private Web Browser:|https://www.waterfox.net/ |
+
 ### Programming and Terminal:
 |Program:|Use:|Url:|
 |:-|:-|:-|
@@ -67,6 +72,7 @@
 |Lazygit|Simple Terminal Ui For Git Commands:|https://github.com/jesseduffield/lazygit/ |
 |Zoxide|A Smarter cd Command:|https://github.com/ajeetdsouza/zoxide/ |
 |Yazi|Fast Terminal File Manager:|https://github.com/sxyazi/yazi/ |
+
 ### Office and Communication:
 |Program:|Use:|Url:|
 |:-|:-|:-|
@@ -77,6 +83,8 @@
 |OnlyOffice|Open Source Alternative to Office 365:|[https://www.onlyoffice.com/](https://www.onlyoffice.com/download-docs.aspx?from=default) |
 |Rustdesk|Open Source Remote Desktop|https://github.com/rustdesk/rustdesk/ |
 |Anydesk|Remote Desktop|https://anydesk.com/en|
+|Scrite|ScreenWriting Software|https://www.scrite.io/ |
+
 ### Utilitys:
 |Program:|Use:|Url:|
 |:-|:-|:-|
@@ -97,6 +105,7 @@
 |x64dbg|Open Source x64/x32 Debugger for Windows:|https://x64dbg.com/ |
 |7zip|Compress and Encrypt files:|https://www.7-zip.org/ |
 |Snappy Driver Installer| Find Drivers for your PC| https://sdi-tool.org/download/ |
+
 ### Developer Tools:
 |Program:|Use:|Url:|
 |:-|:-|:-|
