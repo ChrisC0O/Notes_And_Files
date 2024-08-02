@@ -24,3 +24,5 @@ Follow the guide on [pytorch.org](https://pytorch.org/)
 #### Install detectron2:
 Follow the guide on [readthedocs](https://detectron2.readthedocs.io/en/latest/tutorials/install.html)
 
+#### Get Started!
+[Tutorial](https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5)
