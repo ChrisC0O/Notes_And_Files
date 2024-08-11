@@ -39,7 +39,7 @@
 |Program:|Use:|Url:|
 |:-|:-|:-|
 |VirtuelBox|Make virtual machines:|[https://www.virtualbox.org/](https://www.virtualbox.org/wiki/Downloads) |
-|CherryTree|Note Management| [MAC](https://gitlab.com/dehesselle/cherrytree_macos/-/releases)[WIN/LINUX](https://github.com/giuspen/cherrytree/releases) |
+|CherryTree|Note Management| [MAC](https://gitlab.com/dehesselle/cherrytree_macos/-/releases) and [WIN/LINUX](https://github.com/giuspen/cherrytree/releases) |
 |Logseq|Note Management and Organizer:| https://logseq.com/ |
 |Blender|3D modeling, animation, rendering, VFX and more:|https://www.blender.org/ |
 |Home Assistant|Home Automation:|https://www.home-assistant.io/ |
