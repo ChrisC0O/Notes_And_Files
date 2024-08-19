@@ -24,3 +24,7 @@
 
 #### Whats my IP | API:
 >https://api.myip.com
+
+
+#### Shell Syntax refence:
+>https://ss64.com/
