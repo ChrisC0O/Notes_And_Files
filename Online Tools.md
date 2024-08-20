@@ -28,3 +28,6 @@
 
 #### Shell Syntax refence:
 >https://ss64.com/
+
+#### Site Tecnologies:
+> https://w3techs.com/sites
