@@ -28,6 +28,7 @@
 ### Network:
 |Program:|Use:|Url:|
 |:-|:-|:-|
+|Network Notepad | Newwork Topologi Doumentation Tool | Network Notepad |
 |Qbittorrent|Free Opensource alternative to µTorrent:|https://www.qbittorrent.org/ |
 |Nextcloud|Client-Server Software:|https://nextcloud.com/install/ |
 |Nmap|Network Scanner:|https://nmap.org/ |
