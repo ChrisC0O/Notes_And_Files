@@ -25,10 +25,6 @@
 #### Whats my IP | API:
 >https://api.myip.com
 
-#### Unfuck Javascript:
->https://beautifier.io/
-
-
 #### Shell Syntax refence:
 >https://ss64.com/
 
