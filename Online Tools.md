@@ -33,3 +33,6 @@
 
 #### Unfuck Javascript:
 > https://beautifier.io/
+
+#### Share files (Like WeTransfer)
+> https://www.swisstransfer.com
