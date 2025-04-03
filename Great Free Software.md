@@ -109,7 +109,6 @@
 |Snappy Driver Installer| Find Drivers for your PC| https://sdi-tool.org/download/ |
 |StartAllBack | Return Windows to old UI| https://www.startallback.com/ |
 |MobaXterm | MobaXterm X server and SSH client | https://mobaxterm.mobatek.net/ |
-|PeaZip| Open Source file compression and encryption| https://peazip.github.io/ |
 
 ### Developer Tools:
 |Program:|Use:|Url:|
