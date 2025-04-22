@@ -36,3 +36,6 @@
 
 #### Share files (Like WeTransfer)
 > https://www.swisstransfer.com
+
+#### Free Online Web Proxy
+> https://www.steganos.com/en/free-online-web-proxy
