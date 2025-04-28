@@ -109,6 +109,7 @@
 |Snappy Driver Installer| Find Drivers for your PC| https://sdi-tool.org/download/ |
 |StartAllBack | Return Windows to old UI| https://www.startallback.com/ |
 |MobaXterm | MobaXterm X server and SSH client | https://mobaxterm.mobatek.net/ |
+| HTTrack | Website Copyer | https://www.httrack.com |
 
 ### Developer Tools:
 |Program:|Use:|Url:|
