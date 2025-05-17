@@ -110,6 +110,7 @@
 |StartAllBack | Return Windows to old UI| https://www.startallback.com/ |
 |MobaXterm | MobaXterm X server and SSH client | https://mobaxterm.mobatek.net/ |
 | HTTrack | Website Copyer | https://www.httrack.com |
+| System Informer | monitor system resources and more | https://systeminformer.sourceforge.io/ |
 
 ### Developer Tools:
 |Program:|Use:|Url:|
