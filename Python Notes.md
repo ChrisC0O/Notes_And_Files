@@ -27,3 +27,13 @@ import time
 
 time.time()
 ```
+
+### F-String formatting:
+```py
+part_type = "Engine"
+print(f"{part_type:<30}")  # Left-align, spaces: 'Engine                         '
+print(f"{part_type:>30}")  # Right-align, spaces: '                         Engine'
+print(f"{part_type:^30}")  # Center-align, spaces: '            Engine             '
+print(f"{part_type:.<30}") # Left-align, dots: 'Engine.........................'
+print(f"{part_type:*^30}") # Center-align, asterisks: '************Engine************'
+```
