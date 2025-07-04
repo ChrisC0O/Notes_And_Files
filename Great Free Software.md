@@ -86,6 +86,7 @@
 |Rustdesk|Open Source Remote Desktop|https://github.com/rustdesk/rustdesk/ |
 |Anydesk|Remote Desktop|https://anydesk.com/en|
 |Scrite|ScreenWriting Software|https://www.scrite.io/ |
+|Font-Awsome| Icon Fonts|https://github.com/FortAwesome/Font-Awesome |
 
 ### Utilitys:
 |Program:|Use:|Url:|
