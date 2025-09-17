@@ -95,3 +95,67 @@ with open(CONFIG_FILE, "w") as f:
 
 print("Config file updated successfully!")
 ```
+
+Helper class
+```py
+import configparser
+import os
+
+class ConfigManager:
+    def __init__(self, file_path="config.ini", default_section="settings"):
+        self.file_path = file_path
+        self.section = default_section
+        self.config = configparser.ConfigParser()
+        
+        # Load existing file if present
+        if os.path.exists(self.file_path):
+            self.config.read(self.file_path)
+        
+        # Ensure section exists
+        if self.section not in self.config:
+            self.config[self.section] = {}
+
+    def get(self, key, default=None, value_type=str):
+        """Get a value from the config, with optional type conversion."""
+        if key not in self.config[self.section]:
+            return default
+        value = self.config[self.section][key]
+        try:
+            if value_type == int:
+                return int(value)
+            elif value_type == float:
+                return float(value)
+            elif value_type == bool:
+                return self.config[self.section].getboolean(key)
+            return value  # default str
+        except ValueError:
+            return default
+
+    def set(self, key, value):
+        """Set a value and save immediately."""
+        self.config[self.section][key] = str(value)
+        self._save()
+
+    def _save(self):
+        """Write the config back to the file."""
+        with open(self.file_path, "w") as f:
+            self.config.write(f)
+
+# -----------------------------
+# Example usage
+# -----------------------------
+if __name__ == "__main__":
+    cfg = ConfigManager()
+
+    # Get existing value or default
+    last_id = cfg.get("last_portfolio_id", 0, int)
+    print(f"Last portfolio ID: {last_id}")
+
+    # Update value
+    cfg.set("last_portfolio_id", last_id + 1)
+    cfg.set("username", "ChrisUpdated")
+
+    # Get updated value
+    print(f"Updated last ID: {cfg.get('last_portfolio_id', 0, int)}")
+
+```
