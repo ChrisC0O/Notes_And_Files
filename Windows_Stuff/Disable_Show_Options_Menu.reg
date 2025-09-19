@@ -1,6 +1,7 @@
 ﻿Windows Registry Editor Version 5.00
 
-How to Fix the Annoying Windows 11 "Show More Options" Context Menu in 2 minutes!  -->  https://www.youtube.com/watch?v=L2LC3u5VM4E
+;How to Fix the Annoying Windows 11 "Show More Options" Context Menu in 2 minutes!  -->  https://www.youtube.com/watch?v=L2LC3u5VM4E
+;JUST RUN THIS FILE
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}]
 
