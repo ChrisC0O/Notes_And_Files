@@ -3,3 +3,6 @@
 
 #### See the route of a ping on a map
 > https://visualtraceroute.net/
+
+####  Hiking Map (And other stuff)
+> https://waymarkedtrails.org/
