@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, render_template_string, abort, send_file
+from flask import Flask, send_from_directory, render_template_string, abort, send_file, request, redirect, url_for
 import os
 from pathlib import Path
 import zipfile
@@ -25,11 +25,19 @@ INDEX_TEMPLATE = """
         a:hover { text-decoration: underline; }
         .folder { font-weight: bold; }
         .file-size { text-align: right; }
+        form { margin-bottom: 20px; }
+        input[type="file"] { margin-right: 10px; }
     </style>
 </head>
 <body>
     <h1>File Browser: {{ current_path }}</h1>
+    {% if parent_path %}
     <p><a href="{{ parent_path }}">.. (Parent Directory)</a></p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" multiple>
+        <input type="submit" value="Upload Files">
+    </form>
     <table>
         <tr><th>Name</th><th>Size</th><th>Type</th></tr>
         {% for item in items %}
@@ -53,6 +61,7 @@ INDEX_TEMPLATE = """
 </html>
 """
 
+
 def get_file_size(path):
     """Get file or folder size in human-readable format."""
     if not path.is_file():
@@ -71,6 +80,7 @@ def get_file_size(path):
         size /= 1024
     return f"{size:.2f} TB"
 
+
 def zip_folder(folder_path):
     """Create a ZIP archive of a folder in memory."""
     memory_file = io.BytesIO()
@@ -83,17 +93,26 @@ def zip_folder(folder_path):
     memory_file.seek(0)
     return memory_file
 
-@app.route('/')
-@app.route('/<path:path>')
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/<path:path>', methods=['GET', 'POST'])
 def index(path=''):
     """Display directory listing."""
     current_dir = Path.cwd() / path
     if not current_dir.exists():
         abort(404)
-    
+
     if current_dir.is_file():
         return send_from_directory(current_dir.parent, current_dir.name, as_attachment=True)
-    
+
+    if request.method == 'POST':
+        files = request.files.getlist('file')
+        for file in files:
+            if file.filename != '':
+                filepath = current_dir / file.filename
+                file.save(filepath)
+        return redirect(url_for('index', path=path))
+
     items = []
     for item in current_dir.iterdir():
         if item.name.startswith('.'):  # Skip hidden files
@@ -104,11 +123,11 @@ def index(path=''):
             'size': get_file_size(item),
             'relative_path': str(item.relative_to(Path.cwd()))
         })
-    
+
     items.sort(key=lambda x: (not x['is_dir'], x['name'].lower()))
-    
+
     parent_path = str(Path(path).parent) if path else ''
-    
+
     return render_template_string(
         INDEX_TEMPLATE,
         items=items,
@@ -116,16 +135,17 @@ def index(path=''):
         parent_path=parent_path
     )
 
+
 @app.route('/download/<path:path>')
 def download_file(path):
     """Serve file or folder (as ZIP) for download."""
     target_path = Path.cwd() / path
     if not target_path.exists():
         abort(404)
-    
+
     if target_path.is_file():
         return send_from_directory(target_path.parent, target_path.name, as_attachment=True)
-    
+
     if target_path.is_dir():
         zip_file = zip_folder(target_path)
         return send_file(
@@ -134,8 +154,9 @@ def download_file(path):
             as_attachment=True,
             download_name=f"{target_path.name}.zip"
         )
-    
+
     abort(404)
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
