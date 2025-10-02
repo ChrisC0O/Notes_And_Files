@@ -1,13 +1,13 @@
-from flask import Flask, send_from_directory, render_template_string, abort, send_file, request, redirect, url_for
+from flask import Flask, send_file, request, render_template_string, abort
 import os
-from pathlib import Path
 import zipfile
 import io
 
 app = Flask(__name__)
+UPLOAD_FOLDER = os.getcwd()
 
-# HTML template for the index page
-INDEX_TEMPLATE = """
+# HTML template for the file browser
+HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,44 +16,47 @@ INDEX_TEMPLATE = """
     <title>File Browser</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { color: #333; }
         table { border-collapse: collapse; width: 100%; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
-        tr:hover { background-color: #f5f5f5; }
         a { text-decoration: none; color: #0066cc; }
         a:hover { text-decoration: underline; }
-        .folder { font-weight: bold; }
-        .file-size { text-align: right; }
-        form { margin-bottom: 20px; }
-        input[type="file"] { margin-right: 10px; }
+        .upload-form { margin-bottom: 20px; }
+        .error { color: red; }
     </style>
 </head>
 <body>
-    <h1>File Browser: {{ current_path }}</h1>
-    {% if parent_path %}
-    <p><a href="{{ parent_path }}">.. (Parent Directory)</a></p>
+    <h1>File Browser</h1>
+    <h2>Current Directory: {{ current_dir }}</h2>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
     {% endif %}
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file" multiple>
-        <input type="submit" value="Upload Files">
-    </form>
+
+    <div class="upload-form">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" multiple>
+            <input type="submit" value="Upload File(s)">
+        </form>
+    </div>
+
     <table>
-        <tr><th>Name</th><th>Size</th><th>Type</th></tr>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Action</th>
+        </tr>
         {% for item in items %}
         <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ 'Directory' if item.is_dir else 'File' }}</td>
             <td>
                 {% if item.is_dir %}
-                <span class="folder">📁</span>
-                <a href="{{ url_for('index', path=item.relative_path) }}">{{ item.name }}</a>
-                (<a href="{{ url_for('download_file', path=item.relative_path) }}">Download as ZIP</a>)
+                <a href="/download?path={{ item.path }}&zip=true">Download as ZIP</a>
                 {% else %}
-                <span>📄</span>
-                <a href="{{ url_for('download_file', path=item.relative_path) }}">{{ item.name }}</a>
+                <a href="/download?path={{ item.path }}">Download</a>
                 {% endif %}
             </td>
-            <td class="file-size">{{ item.size }}</td>
-            <td>{{ 'Directory' if item.is_dir else 'File' }}</td>
         </tr>
         {% endfor %}
     </table>
@@ -62,101 +65,73 @@ INDEX_TEMPLATE = """
 """
 
 
-def get_file_size(path):
-    """Get file or folder size in human-readable format."""
-    if not path.is_file():
-        if path.is_dir():
-            total_size = sum(f.stat().st_size for f in path.rglob('*') if f.is_file())
-            for unit in ['B', 'KB', 'MB', 'GB']:
-                if total_size < 1024:
-                    return f"{total_size:.2f} {unit}"
-                total_size /= 1024
-            return f"{total_size:.2f} TB"
-        return "-"
-    size = path.stat().st_size
-    for unit in ['B', 'KB', 'MB', 'GB']:
-        if size < 1024:
-            return f"{size:.2f} {unit}"
-        size /= 1024
-    return f"{size:.2f} TB"
-
-
-def zip_folder(folder_path):
-    """Create a ZIP archive of a folder in memory."""
-    memory_file = io.BytesIO()
-    with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
-        for root, _, files in os.walk(folder_path):
-            for file in files:
-                file_path = Path(root) / file
-                arcname = str(file_path.relative_to(folder_path.parent))
-                zf.write(file_path, arcname)
-    memory_file.seek(0)
-    return memory_file
-
-
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/<path:path>', methods=['GET', 'POST'])
-def index(path=''):
-    """Display directory listing."""
-    current_dir = Path.cwd() / path
-    if not current_dir.exists():
-        abort(404)
-
-    if current_dir.is_file():
-        return send_from_directory(current_dir.parent, current_dir.name, as_attachment=True)
-
-    if request.method == 'POST':
-        files = request.files.getlist('file')
-        for file in files:
-            if file.filename != '':
-                filepath = current_dir / file.filename
-                file.save(filepath)
-        return redirect(url_for('index', path=path))
-
-    items = []
-    for item in current_dir.iterdir():
-        if item.name.startswith('.'):  # Skip hidden files
-            continue
-        items.append({
-            'name': item.name,
-            'is_dir': item.is_dir(),
-            'size': get_file_size(item),
-            'relative_path': str(item.relative_to(Path.cwd()))
+@app.route('/')
+def index():
+    files = []
+    for item in os.listdir(UPLOAD_FOLDER):
+        item_path = os.path.join(UPLOAD_FOLDER, item)
+        files.append({
+            'name': item,
+            'path': item,
+            'is_dir': os.path.isdir(item_path)
         })
-
-    items.sort(key=lambda x: (not x['is_dir'], x['name'].lower()))
-
-    parent_path = str(Path(path).parent) if path else ''
-
-    return render_template_string(
-        INDEX_TEMPLATE,
-        items=items,
-        current_path=str(path) or '/',
-        parent_path=parent_path
-    )
+    files.sort(key=lambda x: (not x['is_dir'], x['name'].lower()))
+    return render_template_string(HTML_TEMPLATE, items=files, current_dir=UPLOAD_FOLDER, error=None)
 
 
-@app.route('/download/<path:path>')
-def download_file(path):
-    """Serve file or folder (as ZIP) for download."""
-    target_path = Path.cwd() / path
-    if not target_path.exists():
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return render_template_string(HTML_TEMPLATE, items=[], current_dir=UPLOAD_FOLDER,
+                                      error="No file part in the request")
+
+    files = request.files.getlist('file')
+    for file in files:
+        if file and file.filename:
+            # Extract only the filename, discarding client-side path
+            filename = os.path.basename(file.filename)
+            # Ensure filename is not empty and is safe
+            if filename:
+                try:
+                    file.save(os.path.join(UPLOAD_FOLDER, filename))
+                except Exception as e:
+                    return render_template_string(HTML_TEMPLATE, items=[], current_dir=UPLOAD_FOLDER,
+                                                  error=f"Error saving file {filename}: {str(e)}")
+            else:
+                return render_template_string(HTML_TEMPLATE, items=[], current_dir=UPLOAD_FOLDER,
+                                              error="Invalid filename")
+
+    return index()
+
+
+@app.route('/download')
+def download_file():
+    path = request.args.get('path')
+    as_zip = request.args.get('zip') == 'true'
+    full_path = os.path.join(UPLOAD_FOLDER, path)
+
+    if not os.path.exists(full_path):
         abort(404)
 
-    if target_path.is_file():
-        return send_from_directory(target_path.parent, target_path.name, as_attachment=True)
-
-    if target_path.is_dir():
-        zip_file = zip_folder(target_path)
+    if os.path.isdir(full_path) and as_zip:
+        memory_file = io.BytesIO()
+        with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
+            for root, _, files in os.walk(full_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    arcname = os.path.relpath(file_path, UPLOAD_FOLDER)
+                    zf.write(arcname, file_path)
+        memory_file.seek(0)
         return send_file(
-            zip_file,
-            mimetype='application/zip',
-            as_attachment=True,
-            download_name=f"{target_path.name}.zip"
+            memory_file,
+            download_name=f"{path}.zip",
+            as_attachment=True
         )
-
-    abort(404)
+    elif os.path.isfile(full_path):
+        return send_file(full_path, as_attachment=True)
+    else:
+        abort(404)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', debug=False, port=5000)
