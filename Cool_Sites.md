@@ -9,3 +9,6 @@
 
 #### Discover Hidden Wonders in 222 Countries and 3,147 Cities. 
 > https://www.atlasobscura.com/destinations
+
+#### A Map of all Music
+> https://everynoise.com/
