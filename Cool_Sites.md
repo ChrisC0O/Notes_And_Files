@@ -6,3 +6,6 @@
 
 ####  Hiking Map (And other stuff)
 > https://waymarkedtrails.org/
+
+#### Discover Hidden Wonders in 222 Countries and 3,147 Cities. 
+> https://www.atlasobscura.com/destinations
