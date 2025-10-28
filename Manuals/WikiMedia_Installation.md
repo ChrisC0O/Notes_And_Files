@@ -234,9 +234,7 @@ $wgMainCacheType = CACHE_ACCEL;
 
 ---
 
-**You're done!**  
-Your wiki is now **secure, private, and fully functional**.
+# Final Notes:
+Remember, WikiMedia has a ton of extentions!
 
-> **Last Updated**: October 28, 2025  
-> **MediaWiki Version**: 1.44.2  
-> **Status**: Production-Ready Lockdown
+See them all here: [WikiMedia Extentions](https://www.mediawiki.org/wiki/Category:Stable_extensions)
