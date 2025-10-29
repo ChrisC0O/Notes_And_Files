@@ -1,112 +1,382 @@
-# Comprehensive Guide to Organizing Your MediaWiki Site
+# **Guide to Organizing Your MediaWiki Site**  
+*Why You Do It, How It Works, Real Examples, and Step-by-Step Best Practices*
 
-MediaWiki, the open-source software behind Wikipedia and thousands of other wikis, provides powerful tools like **namespaces**, **categories**, **templates**, **subpages**, and **navigation structures** to keep your site structured, scalable, and user-friendly. Proper organization ensures content is easy to find, maintain, and expand—whether you're running a personal wiki, documentation site, or collaborative knowledge base. This guide covers the fundamentals, best practices, and pro tips.
+---
 
-## 1. Namespaces: The Foundation of Organization
+## Introduction: Why Organization Matters
 
-**Namespaces** group pages by purpose, prefixed in titles (e.g., `Help:Guide`). They prevent clutter in the main content area and enable special behaviors like transclusion (for templates) or dynamic lists (for categories). Every wiki has **16 default subject namespaces** (even IDs) paired with **talk namespaces** (odd IDs) for discussions, plus 2 special ones (-2 Media, -1 Special).
+Imagine your wiki as a **city**.  
+Without streets (namespaces), traffic lights (templates), or maps (categories), users get lost.  
+Good organization = **findability**, **scalability**, **maintainability**, and **collaboration**.
 
-### Default Namespaces Table
+> **Goal**: Anyone should find content in < 3 clicks.  
+> **Result**: More edits, fewer duplicates, happier users.
 
-| ID | Namespace | Talk ID | Purpose |
-|----|-----------|---------|---------|
-| -2 | **Media** | N/A | Direct links to files (bypasses description page). |
-| -1 | **Special** | N/A | Dynamic pages (e.g., search, recent changes)—not editable. |
-| 0 | **(Main)** | 1 | Core content pages—no prefix. |
-| **1** | **Talk** | N/A | Discussions for main pages. |
-| **2** | **User** | **3** | User profiles, drafts, personal JS/CSS (subpages restricted). |
-| **3** | **User talk** | N/A | Messages to users (auto-notifications). |
-| **4** | **Project**<br>(e.g., WikiName:) | **5** | Wiki guidelines, policies, portals. |
-| **5** | **Project talk** | N/A | Discussions on project pages. |
-| **6** | **File**<br>(alias: Image) | **7** | Media metadata, licensing. |
-| **7** | **File talk** | N/A | File discussions. |
-| **8** | **MediaWiki** | **9** | System messages, site-wide CSS/JS (requires special rights). |
-| **9** | **MediaWiki talk** | N/A | System message discussions. |
-| **10** | **Template** | **11** | Reusable content blocks. |
-| **11** | **Template talk** | N/A | Template discussions. |
-| **12** | **Help** | **13** | User guides and tutorials. |
-| **13** | **Help talk** | N/A | Help discussions. |
-| **14** | **Category** | **15** | Dynamic page indexes. |
-| **15** | **Category talk** | N/A | Category discussions. |
+Let’s build that city — **brick by brick**, with **reasons**, **examples**, and **exact steps**.
 
-**How to Use:**
-- **Create pages**: Visit `Namespace:PageName` and edit (e.g., `User:YourName/Draft`).
-- **Link**: `[[Namespace:Page]]` or shortcuts like `{{ns:User}}` magic word.
-- **Transclude templates**: `{{TemplateName}}` (defaults to Template:).
-- **Best practices**:
-  | Do | Don't |
-  |----|-------|
-  | Use Main for articles. | Mix content types (e.g., no templates in Main). |
-  | Draft in User:. | Create pages in Special/Media. |
-  | Policies in Project:. | Overuse custom namespaces initially. |
-  | Help for guides. | Ignore talk pages—use for feedback! |
+---
 
-**Custom Namespaces**: Admins can add via config (IDs 100+). Great for projects like `Book:`, `Module:`. 
+## 1. **Namespaces: The City Districts**
 
-## 2. Categories: Dynamic Grouping and Navigation
+### What Are Namespaces?
 
-**Categories** create automatic, hierarchical indexes. Add `[[Category:Foo]]` at a page's bottom to join it.
+Namespaces are **pre-defined zones** for different types of content.  
+Think of them as **neighborhoods**:
+- **Downtown** = Main content (articles)
+- **City Hall** = Project: (policies, portals)
+- **Library** = Help: (guides)
+- **Warehouse** = File: (images, PDFs)
 
-- **How it works**: Pages list alphabetically on `Category:Foo`; subcategories form trees.
-- **Hierarchy**: Add categories to category pages (e.g., `Category:Animals` → `[[Category:Biology]]`).
-- **Sort keys**: `[[Category:Foo\|Bar]]` sorts under "Bar".
-- **Magic tags**:
-  | Tag | Effect |
-  |-----|--------|
-  | `__HIDDENCAT__` | Hides from page bottom (e.g., maintenance cats). |
-  | `{{DEFAULTSORT:Key}}` | Sets default sort for all cats on page. |
+Each namespace has:
+- A **name** (e.g., `Help`)
+- An **ID** (e.g., 12)
+- A **talk page** (e.g., Help talk:13)
 
-**Best Practices**:
-- **One top-level tree** (e.g., `Category:Contents`).
-- **Search before creating** (Special:Categories).
-- **5-10 cats per page** max.
-- **Templates**: Use `<includeonly>[[Category:Foo]]</includeonly>` to cat *using* pages only.
-- **Maintenance**: No cat redirects—use templates. Null-edit after template changes.
-- **View trees**: `<categorytree>` tag or Special:CategoryTree.
+---
 
-## 3. Templates: Reuse and Standardize
+### Full Namespace Table (With Real-World Use)
 
-**Templates** (in Template:) are transcluded blocks for consistency (e.g., infoboxes, navbars).
+| ID | Namespace | Talk | Purpose & **Why Use It** | Example |
+|----|-----------|------|---------------------------|--------|
+| 0 | **(Main)** | 1 | **Core articles** — only real content | `Solar System`, `Python Programming` |
+| 2 | **User** | 3 | **Personal space** — drafts, sandbox, user CSS | `User:Alice/Sandbox` |
+| 4 | **Project** | 5 | **Wiki governance** — rules, portals, about | `WikiRules`, `Portal:Science` |
+| 6 | **File** | 7 | **Media metadata** — license, source, description | `File:Earth.jpg` |
+| 8 | **MediaWiki** | 9 | **System interface** — buttons, messages | `MediaWiki:Sidebar` |
+| 10 | **Template** | 11 | **Reusable blocks** — infoboxes, warnings | `Template:Infobox planet` |
+| 12 | **Help** | 13 | **User guides** — how to edit, format | `Help:Editing` |
+| 14 | **Category** | 15 | **Dynamic indexes** — auto-lists | `Category:Planets` |
 
-- **Create**: Edit `Template:Infobox`.
-- **Use**:
-  | Syntax | Effect |
-  |--------|--------|
-  | `{{Infobox}}` | Dynamic transclude (updates everywhere). |
-  | `{{subst:Infobox}}` | Static copy. |
-  | `{{Infobox\|param=Value}}` | Parameters ({{{param\|default}}}). |
+---
 
-**Best Practices**:
-- **Documentation**: Subpage `/doc` with `{{Documentation}}`.
-- **Tags**:
-  | Tag | Where Visible |
-  |-----|---------------|
-  | `<noinclude>` | Template page only. |
-  | `<includeonly>` | Transcluded pages only. |
-  | `<onlyinclude>` | Transcluded content only. |
-- **Avoid loops/recursion**.
-- **Copy from Wikipedia** via Special:Export.
-- **Navigation**: `{{Navbar}}` for menus.
+### How to Use Namespaces (Step-by-Step)
 
-## 4. Page Structure and Navigation
+#### **Step 1: Create a Page in a Namespace**
+1. Go to URL: `https://yourwiki.com/wiki/Help:How_to_Edit`
+2. Click **"Create"** → edit → save.
 
-- **Subpages**: `Page/Subpage` for hierarchy (e.g., `Project:Guide/Advanced`).
-- **Main Page**: Portals, featured content, search box.
-- **Redirects**: `#REDIRECT [[Target]]` for aliases.
-- **Disambiguation**: `{{Disambig}}` for similar titles.
-- **Media**: Upload to File:; embed `[[File:Img.jpg\|thumb]]`.
-- **Links**: Internal `[[Page]]`, interwiki `[[wikipedia:Foo]]`.
+> **Why?** Keeps help separate from articles. No clutter.
 
-## 5. Top Best Practices for Your Wiki
+#### **Step 2: Link to Namespaces**
+```wiki
+[[Help:Editing]] → Help:Editing  
+[[User:Bob]] → User:Bob  
+[[Template:Stub]] → {{Stub}} (auto-resolves)
+```
 
-| Category | Practices |
-|----------|-----------|
-| **Content** | - Bold edits; fix mistakes easily.<br>- Draft in User:, publish to Main.<br>- Categories > subpages for cross-linking.<br>- Templates for infoboxes/nav/stubs. |
-| **Community** | - Talk pages for all changes.<br>- Watchlists for monitoring.<br>- Assume good faith; praise contributors. |
-| **Navigation** | - Breadcrumb templates.<br>- Search-optimized titles.<br>- Portals in Project:. |
-| **Maintenance** | - Recent changes patrol.<br>- Hidden cats for errors.<br>- Back up via XML export. |
-| **Growth** | - Start small: Main Page + Help.<br>- Train with editathons.<br>- Extensions: Semantic MediaWiki for queries. |
+> **Pro Tip**: Use `{{ns:help}}` → outputs "Help"
 
-**Pro Tip**: **Wiki Way**—centralize, collaborate, iterate. Use VisualEditor for noobs.
+#### **Step 3: Search by Namespace**
+Use **Special:Search** → Advanced → tick "Help" only.
 
-For more: [mediawiki.org](https://www.mediawiki.org). Happy wikifying! 🚀
+---
+
+### **Custom Namespaces (When You Need Them)**
+
+You have 100+ pages on **Recipes**? Create `Recipe:` namespace.
+
+**How (in LocalSettings.php):**
+```php
+$wgExtraNamespaces[100] = "Recipe";
+$wgExtraNamespaces[101] = "Recipe_talk";
+```
+
+Now create: `Recipe:Chocolate Cake`
+
+> **Why?** Prevents `Chocolate Cake` from clashing with `Chocolate Cake (band)`  
+> **When?** Only after 50+ pages of same type.
+
+---
+
+## 2. **Categories: The City Map (Auto-Updating!)**
+
+### What Are Categories?
+
+**Dynamic lists** of pages that share a trait.
+
+```wiki
+[[Category:Planets]]
+```
+→ Adds page to `Category:Planets` **automatically**.
+
+---
+
+### How Categories Work (Behind the Scenes)
+
+1. You add `[[Category:X]]` → page joins list.
+2. `Category:X` page shows **all members**.
+3. Subcategories: `[[Category:Planets]]` on `Category:Gas Giants`
+
+```
+Category:Contents
+ └── Category:Science
+      ├── Category:Physics
+      └── Category:Astronomy
+           └── Category:Planets
+                ├── Mars
+                └── Jupiter
+```
+
+---
+
+### **Step-by-Step: Build a Category Tree**
+
+#### **1. Create Root Category**
+```wiki
+[[Category:Contents]]
+```
+Page: `Category:Contents` → your **wiki map**
+
+#### **2. Add Subcategories**
+On `Category:Science`:
+```wiki
+[[Category:Contents]]
+```
+
+#### **3. Categorize Articles**
+On `Mars` page:
+```wiki
+[[Category:Planets]]
+[[Category:Terrestrial planets]]
+```
+
+#### **4. Sort Correctly**
+```wiki
+{{DEFAULTSORT:Mars}}
+[[Category:Planets]]
+```
+→ Sorts by "Mars", not "mars"
+
+---
+
+### **Real Example: Wikipedia-Style Category Tree**
+
+```
+Category:Root
+ └── Category:Technology
+      ├── Category:Programming
+      │    ├── Python
+      │    └── JavaScript
+      └── Category:Hardware
+           └── CPU
+```
+
+---
+
+### **Best Practices (With Reasons)**
+
+| Rule | Why | How |
+|------|-----|-----|
+| **1 category tree only** | Avoids confusion | All top-level → `Category:Contents` |
+| **Max 5–7 cats per page** | Too many = noise | Prioritize most specific |
+| **Use sort keys** | Alphabetical chaos | `[[Category:People|Einstein, Albert]]` |
+| **Hide maintenance cats** | Clean UI | Add `__HIDDENCAT__` to `Category:Stub` |
+| **No redirect categories** | Breaks links | Use `{{Category redirect}}` template |
+
+---
+
+## 3. **Templates: The Reusable LEGO Bricks**
+
+### What Are Templates?
+
+**Snippets** you insert with `{{Name}}`.
+
+---
+
+### **Example: Infobox Template**
+
+#### **Template:Infobox planet** (`Template:Infobox planet`)
+```wiki
+<includeonly>{| class="infobox" style="width:22em;"
+! colspan="2" | {{{name}}}
+|-
+| '''Diameter''' || {{{diameter|Unknown}}}
+|-
+| '''Moons''' || {{{moons|0}}}
+|}</includeonly>
+
+<noinclude>
+== Usage ==
+{{Infobox planet
+| name = Mars
+| diameter = 6,779 km
+| moons = 2
+}}
+[[Category:Infobox templates]]
+</noinclude>
+```
+
+#### **Use on Mars page:**
+```wiki
+{{Infobox planet
+| name = Mars
+| diameter = 6,779 km
+| moons = 2
+}}
+```
+
+→ Renders clean box. Update template → **all planets update**.
+
+---
+
+### **Template Tags Explained**
+
+| Tag | Where It Shows | Use Case |
+|-----|----------------|---------|
+| `<includeonly>` | Only when transcluded | Main content |
+| `<noinclude>` | Only on template page | Docs, categories |
+| `<onlyinclude>` | Only transcluded part | Partial reuse |
+
+---
+
+### **Navbar Template (Navigation Bar)**
+
+#### `Template:Navbar`
+```wiki
+<includeonly><div class="navbar">
+[[:Category:Physics|Physics]] | [[:Category:Biology|Biology]] | [[Help:Editing|Help]]
+</div></includeonly>
+
+<noinclude>
+Add to top of pages: {{Navbar}}
+</noinclude>
+```
+
+→ One change = site-wide nav update.
+
+---
+
+## 4. **Page Structure & Navigation**
+
+### **Main Page Layout (Example)**
+
+```wiki
+{{Portal box}}
+== Welcome to MyWiki ==
+Search or browse below.
+
+{{Search box}}
+
+== Featured Topics ==
+{{Portal list}}
+
+== New Here? ==
+[[Help:Editing]] | [[Project:Community portal]]
+```
+
+---
+
+### **Breadcrumbs (Navigation Trail)**
+
+#### `Template:Breadcrumb`
+```wiki
+<includeonly><small>
+[[Main Page]] > {{#if:{{{1|}}}|[[{{{1}}}]] > }}{{{2|}}}
+</small></includeonly>
+```
+
+Use:
+```wiki
+{{Breadcrumb|Science|Physics}}
+```
+→ `Main Page > Science > Physics`
+
+---
+
+### **Subpages: Hierarchical Content**
+
+Enable in `LocalSettings.php`:
+```php
+$wgNamespacesWithSubpages[NS_MAIN] = true;
+```
+
+Now:
+- `Python/Functions`
+- `Python/Classes`
+
+> **Why?** Logical grouping  
+> **When not?** Use categories for cross-links
+
+---
+
+## 5. **Files & Media**
+
+### Upload & Embed
+
+1. Go to **Special:Upload**
+2. File: `File:Earth from space.jpg`
+3. Description page:
+   ```wiki
+   == Summary ==
+   Earth from Apollo 17.
+
+   == Licensing ==
+   {{PD-USGov-NASA}}
+   ```
+
+Embed:
+```wiki
+[[File:Earth from space.jpg|thumb|right|Earth from space]]
+```
+
+---
+
+## 6. **Full Best Practices Checklist**
+
+| Area | Do This | Why |
+|------|--------|-----|
+| **Content** | Draft in `User:You/Draft` → move to Main | Prevents broken links |
+| **Naming** | `Help:How to edit` (not `howtoedit`) | Searchable, consistent |
+| **Templates** | Document with `/doc` subpage | Future-proof |
+| **Categories** | One root: `Category:Contents` | Single source of truth |
+| **Talk Pages** | Use for all major changes | Transparency |
+| **Redirects** | `#REDIRECT [[Target]]` | Handles old names |
+| **Maintenance** | Patrol Special:RecentChanges | Catch vandalism fast |
+
+---
+
+## 7. **Example Wiki Structure (Small Wiki)**
+
+```
+Main Page
+ ├── Portal:Science
+ │    ├── Physics
+ │    └── Biology
+ ├── Help:Editing
+ ├── Project:Rules
+ └── User:Alice/Sandbox
+
+Category:Contents
+ └── Category:Science
+      └── Category:Physics
+
+Template:Infobox
+Template:Stub
+Template:Navbar
+```
+
+---
+
+## 8. **Pro Tips from Real Wikis**
+
+1. **Copy Wikipedia templates** via **Special:Export**
+2. **Use VisualEditor** for new users
+3. **Enable DiscussionTools** for better talk pages
+4. **Add a Search box** on every page
+5. **Back up monthly** with `Special:Export` (XML)
+
+---
+
+## Resources
+
+- [MediaWiki.org](https://www.mediawiki.org)
+- [Manual:Namespaces](https://www.mediawiki.org/wiki/Manual:Namespaces)
+- [Help:Categories](https://www.mediawiki.org/wiki/Help:Categories)
+- [Template Documentation](https://www.mediawiki.org/wiki/Help:Templates)
+
+---
+
+**You now have a blueprint to build a clean, scalable, user-friendly wiki.**  
+Start small. Add one template. One category tree. Watch it grow.
+
+**Happy organizing!**
