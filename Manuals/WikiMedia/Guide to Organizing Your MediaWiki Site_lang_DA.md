@@ -1,382 +1,405 @@
-# **Ultimativ dybdegående guide til at organisere din MediaWiki-site**  
-*Hvorfor du gør det, hvordan det virker, konkrete eksempler og trin-for-trin-best practices*
+# **ULTIMATIV, EKSTREMT DYBDEGÅENDE GUIDE TIL AT ORGANISERE DIN MEDIAWIKI**  
+*Alt er på dansk, men alle tekniske MediaWiki-termer står på **original engelsk** (namespace, template, category osv.).  
+Hver eneste detalje er forklaret: **hvorfor**, **hvordan**, **hvad sker bag kulisserne**, **trin-for-trin**, **eksempler**, **faldgruber**, **pro-tips**, **kodelinje-for-kodelinje**.*
 
 ---
 
-## Indledning: Hvorfor organisering er vigtigt
+## **Indledning: Hvorfor organisering er selve fundamentet for en sund wiki**
 
-Forestil dig din wiki som en **by**.  
-Uden gader (namespaces), trafiklys (templates) eller kort (categories) bliver brugerne fortabte.  
-God organisering = **findbarhed**, **skalerbarhed**, **vedligeholdelse** og **samarbejde**.
+En MediaWiki uden struktur er som en by uden veje, skilte eller kort.  
+Brugere finder ikke indhold. Redaktører opretter dubletter. Administratorer drukner i kaos.
 
-> **Mål**: Alle skal kunne finde indhold på under 3 klik.  
-> **Resultat**: Flere redigeringer, færre dubletter, gladere brugere.
-
-Lad os bygge den by — **mursten for mursten**, med **begrundelser**, **eksempler** og **præcise trin**.
-
----
-
-## 1. **Namespaces: Byens distrikter**
-
-### Hvad er namespaces?
-
-Namespaces er **foruddefinerede zoner** til forskellige typer indhold.  
-Tænk på dem som **bydele**:
-- **Centrum** = Main content (artikler)
-- **Rådhus** = Project: (regler, portaler)
-- **Bibliotek** = Help: (vejledninger)
-- **Lager** = File: (billeder, PDF’er)
-
-Hvert namespace har:
-- Et **navn** (f.eks. `Help`)
-- Et **ID** (f.eks. 12)
-- En **talk page** (f.eks. Help talk:13)
+> **Målet med god organisering**  
+> 1. **Findbarhed**: Max 3 klik til ethvert indhold.  
+> 2. **Skalerbarhed**: 10 eller 10.000 sider – systemet skal fungere ens.  
+> 3. **Vedligeholdelse**: Én ændring → opdatering overalt (via templates).  
+> 4. **Samarbejde**: Nye brugere forstår strukturen med det samme.
 
 ---
 
-### Fuldt namespace-oversigt (med virkelige anvendelser)
+## **1. Namespaces – den arkitektoniske grundplan**
 
-| ID | Namespace | Talk | Formål & **hvorfor bruge det** | Eksempel |
-|----|-----------|------|--------------------------------|----------|
-| 0 | **(Main)** | 1 | **Kerneartikler** — kun rigtigt indhold | `Solsystemet`, `Python Programming` |
-| 2 | **User** | 3 | **Personligt rum** — drafts, sandbox, user CSS | `User:Alice/Sandbox` |
-| 4 | **Project** | 5 | **Wiki-styring** — regler, portaler, about | `WikiRules`, `Portal:Naturvidenskab` |
-| 6 | **File** | 7 | **Mediemetadata** — license, source, description | `File:Jorden.jpg` |
-| 8 | **MediaWiki** | 9 | **System interface** — buttons, messages | `MediaWiki:Sidebar` |
-| 10 | **Template** | 11 | **Reusable blocks** — infoboxes, warnings | `Template:Infobox planet` |
-| 12 | **Help** | 13 | **Brugervejledninger** — how to edit, format | `Help:Redigering` |
-| 14 | **Category** | 15 | **Dynamic indexes** — auto-lists | `Category:Planeter` |
+### **Hvad er et namespace præcist?**
 
----
+Et **namespace** er en **logisk container** til sider med samme formål.  
+Hver side i MediaWiki har en **fuld titel** = `Namespace:SideNavn` (undtagen Main, hvor præfikset udelades).
 
-### Sådan bruger du namespaces (trin for trin)
-
-#### **Trin 1: Opret en side i et namespace**
-1. Gå til URL: `https://dinwiki.dk/wiki/Help:Hvordan_man_redigerer`
-2. Klik **"Create"** → edit → save.
-
-> **Hvorfor?** Holder help adskilt fra artikler. Ingen rod.
-
-#### **Trin 2: Link til namespaces**
-```wiki
-[[Help:Redigering]] → Help:Redigering  
-[[User:Bob]] → User:Bob  
-[[Template:Stub]] → {{Stub}} (løser automatisk)
-```
-
-> **Pro-tip**: Brug `{{ns:help}}` → udskriver "Help"
-
-#### **Trin 3: Søg efter namespace**
-Brug **Special:Search** → Advanced → tick "Help" only.
+> **Teknisk set**:  
+> - Hver namespace har et **unikt ID** (heltal).  
+> - Hvert namespace (undtagen Special og Media) har en **talk namespace** med ID + 1.  
+> - Systemet bruger disse ID’er til **søgning**, **rettigheder**, **subpages**, **transclusion** osv.
 
 ---
 
-### **Custom namespaces (når du har brug for dem)**
+### **Komplet namespace-oversigt med detaljeret forklaring**
 
-Har du 100+ sider om **Opskrifter**? Opret `Opskrift:` namespace.
+| ID | Namespace | Talk ID | **Formål** | **Hvorfor bruge det?** | **Eksempel** | **Rettigheder** |
+|----|-----------|---------|------------|------------------------|--------------|-----------------|
+| -2 | **Media** | – | Direkte link til fil (bypasser beskrivelsesside) | Hurtig adgang til rå fil | `[[Media:Logo.png]]` | Ingen redigering |
+| -1 | **Special** | – | Dynamiske system-sider | Genereres on-the-fly | `Special:RecentChanges` | Kun system |
+| 0 | **(Main)** | 1 | **Kerneindhold** – artikler, leksika | Hovedfokus for læsere | `Python`, `København` | Alle kan redigere |
+| 1 | **Talk** | – | Diskussion om Main-sider | Samarbejde, forslag | `Talk:Python` | Alle |
+| 2 | **User** | 3 | Personligt rum, drafts, sandbox, CSS/JS | Sikker testplads | `User:Alice/Sandbox` | Kun ejer + admins |
+| 3 | **User talk** | – | Beskeder til brugere | Notifikationer | `User talk:Alice` | Alle |
+| 4 | **Project** | 5 | Wikiens "meta" – regler, portaler, om | Central styring | `Project:Retningslinjer` | Alle |
+| 5 | **Project talk** | – | Diskussion om Project-sider | Konsensus | `Project talk:Retningslinjer` | Alle |
+| 6 | **File** | 7 | Metadata for uploadede filer | Licens, kilde, beskrivelse | `File:Earth.jpg` | Alle (med upload-rettighed) |
+| 7 | **File talk** | – | Diskussion om filer | Klarhed om brug | `File talk:Earth.jpg` | Alle |
+| 8 | **MediaWiki** | 9 | Systembeskeder, interface-tekster | Oversættelse, tilpasning | `MediaWiki:Sidebar` | Kun interface-admins |
+| 9 | **MediaWiki talk** | – | Diskussion om systembeskeder | Koordinering | `MediaWiki talk:Sidebar` | Alle |
+| 10 | **Template** | 11 | Genanvendelige kodesnipper | Konsistens | `Template:Infobox` | Alle |
+| 11 | **Template talk** | – | Diskussion om templates | Forbedringer | `Template talk:Infobox` | Alle |
+| 12 | **Help** | 13 | Brugervejledninger | Onboarding | `Help:Redigering` | Alle |
+| 13 | **Help talk** | – | Feedback på vejledninger | Forbedring | `Help talk:Redigering` | Alle |
+| 14 | **Category** | 15 | Dynamiske lister over sider | Navigation, søgning | `Category:Planeter` | Alle |
+| 15 | **Category talk** | – | Diskussion om kategorier | Struktur | `Category talk:Planeter` | Alle |
 
-**Hvordan (i LocalSettings.php):**
+---
+
+### **Sådan opretter du en side i et namespace – trin for trin**
+
+#### **Eksempel: Opret `Help:Redigering`**
+
+1. **Gå til URL**:  
+   ```
+   https://dinwiki.dk/wiki/Help:Redigering
+   ```
+2. **Klik “Opret”** (hvis siden ikke findes).  
+3. **Indsæt indhold**:
+   ```wiki
+   = Sådan redigerer du =
+   Klik på '''Rediger''' øverst.
+
+   Brug [[Help:Formatering|formatering]] for at gøre teksten pæn.
+
+   Gem med en kort [[Help:Redigeringsresumé|redigeringsresumé]].
+   ```
+4. **Tilføj kategori**:
+   ```wiki
+   [[Category:Hjælpesider]]
+   ```
+5. **Gem**.
+
+> **Hvorfor i Help-namespace?**  
+> - Adskilt fra Main → ingen forvirring.  
+> - Søgning i Help kun → `intitle:Redigering inhelp`  
+> - Talk-sider aktiveres automatisk.
+
+---
+
+### **Hvordan linker du til namespaces?**
+
+| Syntax | Resultat | Bemærkning |
+|-------|----------|------------|
+| `[[Help:Redigering]]` | Help:Redigering | Normalt link |
+| `[[User:Alice]]` | User:Alice | Går til brugerprofil |
+| `[[Template:Stub]]` | Template:Stub | Men vises som **Stub** i editor |
+| `{{Stub}}` | (indhold af Template:Stub) | **Transclusion** |
+| `{{FULLPAGENAME}}` | `Help:Redigering` | Magic word |
+| `{{ns:help}}` | `Help` | Namespace-navn |
+
+---
+
+### **Custom namespaces – hvornår og hvordan**
+
+#### **Hvornår skal du bruge custom namespaces?**
+
+| Situation | Eksempel | Namespace |
+|----------|----------|-----------|
+| 100+ opskrifter | `Chokoladekage` | `Opskrift:` |
+| Dokumentation | `API v2` | `Dokumentation:` |
+| Bogprojekt | `Kap 1` | `Bog:` |
+
+#### **Sådan opretter du et custom namespace (i `LocalSettings.php`)**
+
 ```php
+// Opret Opskrift: (ID 100) og Opskrift talk: (ID 101)
 $wgExtraNamespaces[100] = "Opskrift";
 $wgExtraNamespaces[101] = "Opskrift_talk";
+
+// Tillad subpages i Opskrift:
+$wgNamespacesWithSubpages[100] = true;
+
+// Søg kun i Opskrift:
+$wgNamespacesToBeSearchedDefault[100] = true;
 ```
 
-Nu opret: `Opskrift:Chokoladekage`
+> **Genstart ikke serveren** – kun genindlæs siden.
 
-> **Hvorfor?** Forhindrer `Chokoladekage` i at kollidere med `Chokoladekage (band)`  
-> **Hvornår?** Først efter 50+ sider af samme type.
-
----
-
-## 2. **Categories: Byens kort (selvopdaterende!)**
-
-### Hvad er categories?
-
-**Dynamiske lister** over sider, der deler et træk.
-
-```wiki
-[[Category:Planeter]]
+#### **Opret første side**
 ```
-→ Tilføjer siden til `Category:Planeter` **automatisk**.
-
----
-
-### Sådan fungerer categories (bag kulisserne)
-
-1. Du tilføjer `[[Category:X]]` → siden tilslutter sig listen.
-2. `Category:X`-siden viser **alle medlemmer**.
-3. Subcategories: `[[Category:Planeter]]` på `Category:Gasgiganter`
-
-```
-Category:Indhold
- └── Category:Naturvidenskab
-      ├── Category:Fysik
-      └── Category:Astronomi
-           └── Category:Planeter
-                ├── Mars
-                └── Jupiter
+https://dinwiki.dk/wiki/Opskrift:Chokoladekage
 ```
 
 ---
 
-### **Trin-for-trin: Byg et category tree**
+## **2. Categories – det selvopdaterende navigationssystem**
 
-#### **1. Opret root category**
+### **Hvad sker der, når du tilføjer `[[Category:Planeter]]`?**
+
+1. **Parseren** ser `[[Category:Planeter]]`.  
+2. **Tjekker om `Category:Planeter` findes** → opretter hvis ikke.  
+3. **Tilføjer siden til databasen** i tabellen `categorylinks`.  
+4. **Næste gang `Category:Planeter` vises** → SQL-forespørgsel henter alle sider.  
+5. **Automatisk sortering** efter `page_title` (medmindre sort key bruges).
+
+---
+
+### **Byg et fuldt category tree – trin for trin**
+
+#### **Trin 1: Opret rod-kategorien**
+
 ```wiki
 [[Category:Indhold]]
 ```
-Side: `Category:Indhold` → dit **wiki-kort**
 
-#### **2. Tilføj subcategories**
+> **Side: `Category:Indhold`**  
+> Indhold:
+> ```wiki
+> Dette er wikiens hovedkategori. Alle andre kategorier skal være under denne.
+> ```
+
+#### **Trin 2: Opret hovedkategorier**
+
 På `Category:Naturvidenskab`:
 ```wiki
 [[Category:Indhold]]
 ```
 
-#### **3. Kategorisér artikler**
-På `Mars`-siden:
+#### **Trin 3: Opret underkategorier**
+
+På `Category:Astronomi`:
 ```wiki
-[[Category:Planeter]]
-[[Category:Jordlignende planeter]]
+[[Category:Naturvidenskab]]
 ```
 
-#### **4. Sortér korrekt**
+#### **Trin 4: Kategorisér en artikel**
+
+På `Mars`:
 ```wiki
 {{DEFAULTSORT:Mars}}
 [[Category:Planeter]]
-```
-→ Sorterer under "Mars", ikke "mars"
-
----
-
-### **Konkret eksempel: Wikipedia-stil category tree**
-
-```
-Category:Root
- └── Category:Teknologi
-      ├── Category:Programmering
-      │    ├── Python
-      │    └── JavaScript
-      └── Category:Hardware
-           └── CPU
+[[Category:Jordlignende planeter]]
+[[Category:Solsystemet]]
 ```
 
----
-
-### **Best practices (med begrundelser)**
-
-| Regel | Hvorfor | Hvordan |
-|-------|---------|---------|
-| **Kun ét category tree** | Undgår forvirring | Alle topniveauer → `Category:Indhold` |
-| **Max 5–7 cat. pr. side** | For mange = støj | Prioritér mest specifikke |
-| **Brug sort keys** | Alfabetisk kaos | `[[Category:Personer|Einstein, Albert]]` |
-| **Skjul maintenance cats** | Ren UI | Tilføj `__HIDDENCAT__` til `Category:Stub` |
-| **Ingen redirect categories** | Bryder links | Brug `{{Category redirect}}` template |
+> **Hvorfor `DEFAULTSORT`?**  
+> Uden → sorteres under "M" for "Mars".  
+> Med → under "Mars" (ignoreres "Den røde planet" osv.).
 
 ---
 
-## 3. **Templates: De genanvendelige LEGO-klodser**
+### **Avancerede category-teknikker**
 
-### Hvad er templates?
-
-**Snippets** du indsætter med `{{Navn}}`.
+| Teknik | Kode | Effekt |
+|-------|------|--------|
+| **Sort key** | `[[Category:Personer|Einstein, Albert]]` | Sorteres under "Einstein, Albert" |
+| **Hidden category** | `__HIDDENCAT__` på `Category:Stub` | Skjules i bunden af sider |
+| **Category redirect** | `{{Category redirect|Kategori:Gamle planeter}}` | Omdirigerer kategori |
+| **Category tree** | `<categorytree mode=pages>Planeter</categorytree>` | Vis træ i artikel |
 
 ---
 
-### **Eksempel: Infobox template**
+## **3. Templates – den magiske genbrugs-maskine**
 
-#### **Template:Infobox planet** (`Template:Infobox planet`)
+### **Hvad sker ved `{{Infobox}}`?**
+
+1. Parser finder `{{Infobox}}`.  
+2. Søger i **Template namespace**.  
+3. Finder `Template:Infobox`.  
+4. **Transcluderer** indholdet.  
+5. Erstatter `{{{parameter}}}` med værdier.  
+6. **Cachelagrer** resultatet (indtil template ændres).
+
+---
+
+### **Eksempel: Fuld infobox med dokumentation**
+
+#### **`Template:Infobox planet`**
 ```wiki
-<includeonly>{| class="infobox" style="width:22em;"
-! colspan="2" | {{{name}}}
+<includeonly>{| class="infobox" style="float:right; width:22em; font-size:90%;"
 |-
-| '''Diameter''' || {{{diameter|Unknown}}}
+! colspan="2" style="font-size:120%; text-align:center;" | {{{name|{{PAGENAME}}}}}
+{{#if: {{{image|}}} | {{!}}-
+{{!}} colspan="2" style="text-align:center;" {{!}} [[File:{{{image}}}|220px]]
+}}
 |-
-| '''Moons''' || {{{moons|0}}}
+{{#if: {{{diameter|}}} | {{!}} '''Diameter''' {{!!}} {{{diameter}}} }}
+|-
+{{#if: {{{moons|}}} | {{!}} '''Måner''' {{!!}} {{{moons}}} }}
+|-
+| colspan="2" style="text-align:center; font-size:85%;" | ''Sidst opdateret: {{REVISIONMONTH}}/{{REVISIONYEAR}}''
 |}</includeonly>
 
-<noinclude>
-== Usage ==
+<noinclude>{{Infobox planet/doc}}</noinclude>
+```
+
+#### **`Template:Infobox planet/doc` (subpage)**
+```wiki
+== Brug ==
+<pre>
 {{Infobox planet
 | name = Mars
+| image = Mars.jpg
 | diameter = 6.779 km
 | moons = 2
 }}
+</pre>
+
+== Parametre ==
+* '''name''' – planetens navn
+* '''image''' – billede (uden File:)
+* '''diameter''' – i km
+* '''moons''' – antal
+
 [[Category:Infobox templates]]
 </noinclude>
 ```
 
-#### **Brug på Mars-siden:**
+> **Fordele ved `/doc` subpage**:  
+> - Dokumentation vises kun på template-siden.  
+> - Brug `{{Documentation}}` for automatisk boks.
+
+---
+
+### **Template tags – detaljeret**
+
+| Tag | Hvor vises | Eksempel | Brug |
+|-----|------------|---------|------|
+| `<includeonly>` | Kun ved transclusion | Kode | Undgå at vise på template-siden |
+| `<noinclude>` | Kun på template-siden | Docs | Dokumentation, kategorier |
+| `<onlyinclude>` | Kun transcluderet del | Delvis | Brug i store templates |
+
+---
+
+## **4. Navigation & sidestruktur**
+
+### **Main Page – din velkomstportal**
+
 ```wiki
-{{Infobox planet
-| name = Mars
-| diameter = 6.779 km
-| moons = 2
+{{Navbar}}
+
+== Velkommen til [[Project:Om|DinWiki]] ==
+{{Search box}}
+
+{{Portal box
+| Naturvidenskab | Teknologi | Kultur
+}}
+
+== Seneste ændringer ==
+{{Special:RecentChanges/10}}
+
+== Hjælp ==
+* [[Help:Redigering]]
+* [[Help:Formatering]]
+```
+
+---
+
+### **Breadcrumbs med logik**
+
+```wiki
+{{#switch: {{NAMESPACE}}
+  | Main = 
+  | Help = {{Breadcrumb|Hjælp|{{PAGENAME}}}}
+  | #default = {{Breadcrumb|{{NAMESPACE}}|{{PAGENAME}}}}
 }}
 ```
 
-→ Giver en pæn boks. Opdater template → **alle planeter opdateres**.
-
 ---
 
-### **Template tags forklaret**
+## **5. Files – korrekt upload og brug**
 
-| Tag | Hvor vises det | Anvendelse |
-|-----|----------------|------------|
-| `<includeonly>` | Kun ved transclusion | Main content |
-| `<noinclude>` | Kun på template page | Docs, categories |
-| `<onlyinclude>` | Kun den del, der transcludes | Partial reuse |
+### **Upload-trin**
 
----
-
-### **Navbar template (navigationsbjælke)**
-
-#### `Template:Navbar`
-```wiki
-<includeonly><div class="navbar">
-[[:Category:Fysik|Fysik]] | [[:Category:Biologi|Biologi]] | [[Help:Redigering|Hjælp]]
-</div></includeonly>
-
-<noinclude>
-Tilføj øverst på sider: {{Navbar}}
-</noinclude>
-```
-
-→ Én ændring = hele sitet opdateret.
-
----
-
-## 4. **Page structure & navigation**
-
-### **Main Page layout (eksempel)**
-
-```wiki
-{{Portal box}}
-== Velkommen til MinWiki ==
-Søg eller gennemse nedenfor.
-
-{{Search box}}
-
-== Fremhævede emner ==
-{{Portal list}}
-
-== Ny her? ==
-[[Help:Redigering]] | [[Project:Fællesskabsportal]]
-```
-
----
-
-### **Breadcrumbs (navigationssti)**
-
-#### `Template:Breadcrumb`
-```wiki
-<includeonly><small>
-[[Main Page]] > {{#if:{{{1|}}}|[[{{{1}}}]] > }}{{{2|}}}
-</small></includeonly>
-```
-
-Brug:
-```wiki
-{{Breadcrumb|Naturvidenskab|Fysik}}
-```
-→ `Main Page > Naturvidenskab > Fysik`
-
----
-
-### **Subpages: Hierarkisk indhold**
-
-Aktivér i `LocalSettings.php`:
-```php
-$wgNamespacesWithSubpages[NS_MAIN] = true;
-```
-
-Nu:
-- `Python/Functions`
-- `Python/Classes`
-
-> **Hvorfor?** Logisk gruppering  
-> **Hvornår ikke?** Brug categories til cross-links
-
----
-
-## 5. **Files & media**
-
-### Upload & embed
-
-1. Gå til **Special:Upload**
-2. File: `File:Jorden fra rummet.jpg`
-3. Description page:
+1. **Special:Upload**  
+2. Vælg fil → `Earth.jpg`  
+3. **Beskrivelsesside**:
    ```wiki
-   == Summary ==
-   Jorden fra Apollo 17.
+   == Resumé ==
+   Jorden set fra Apollo 17.
 
-   == Licensing ==
+   == Kilde ==
+   NASA
+
+   == Licens ==
    {{PD-USGov-NASA}}
+
+   [[Category:Billeder fra rummet]]
    ```
 
-Embed:
-```wiki
-[[File:Jorden fra rummet.jpg|thumb|right|Jorden fra rummet]]
-```
+4. **Embed**:
+   ```wiki
+   [[File:Earth.jpg
+   |thumb
+   |right
+   |250px
+   |Jorden set fra rummet
+   |alt=Jorden fra Apollo 17
+   ]]
+   ```
 
 ---
 
-## 6. **Fuld checklist for best practices**
+## **6. Fuld checklist – fra nybegynder til ekspert**
 
-| Område | Gør dette | Hvorfor |
-|--------|-----------|---------|
-| **Content** | Draft i `User:Dig/Draft` → move to Main | Forhindrer broken links |
-| **Naming** | `Help:Hvordan man redigerer` (ikke `hvordanmanredigerer`) | Searchable, consistent |
-| **Templates** | Dokumentér med `/doc` subpage | Future-proof |
-| **Categories** | Én root: `Category:Indhold` | Én source of truth |
-| **Talk pages** | Brug til alle større ændringer | Transparency |
-| **Redirects** | `#REDIRECT [[Target]]` | Håndterer old names |
-| **Maintenance** | Patrolér Special:RecentChanges | Fang vandalism fast |
+| Område | Regel | Hvorfor | Hvordan |
+|--------|------|---------|---------|
+| **Content** | Draft i `User:` → flyt til Main | Undgå ødelagte links | `Move` funktion |
+| **Naming** | `Help:Hvordan man redigerer` | Søgbar | Undgå specialtegn |
+| **Templates** | Altid `/doc` | Klarhed | `{{Documentation}}` |
+| **Categories** | Én rod: `Category:Indhold` | Enhed | Subcategories |
+| **Talk** | Brug ved ændringer > 500 tegn | Konsensus | Underskrift: `~~~~` |
+| **Redirects** | `#REDIRECT [[Mål]]` | Gamle navne | Opret efter flytning |
+| **Maintenance** | Patrol `Special:RecentChanges` | Vandalisme | Watchlist |
 
 ---
 
-## 7. **Eksempel på wiki structure (lille wiki)**
+## **7. Eksempel: Fuldt struktureret mini-wiki**
 
 ```
 Main Page
  ├── Portal:Naturvidenskab
  │    ├── Fysik
- │    └── Biologi
+ │    └── Astronomi
+ │         └── Planeter
  ├── Help:Redigering
- ├── Project:Regler
+ ├── Project:Retningslinjer
  └── User:Alice/Sandbox
 
 Category:Indhold
  └── Category:Naturvidenskab
-      └── Category:Fysik
+      └── Category:Astronomi
+           └── Category:Planeter
 
-Template:Infobox
-Template:Stub
+Template:Infobox planet
 Template:Navbar
+Template:Stub
 ```
 
 ---
 
-## 8. **Pro-tips fra rigtige wikier**
+## **8. Pro-tips fra Wikipedia & store wikier**
 
-1. **Kopiér Wikipedia templates** via **Special:Export**
-2. **Brug VisualEditor** til nybegyndere
-3. **Aktivér DiscussionTools** for bedre talk pages
-4. **Tilføj en search box** på hver side
-5. **Backup månedligt** med `Special:Export` (XML)
-
----
-
-## Ressourcer
-
-- [MediaWiki.org](https://www.mediawiki.org)
-- [Manual:Namespaces](https://www.mediawiki.org/wiki/Manual:Namespaces)
-- [Help:Categories](https://www.mediawiki.org/wiki/Help:Categories)
-- [Template Documentation](https://www.mediawiki.org/wiki/Help:Templates)
+1. **Brug Extension:CategoryTree** → interaktivt træ.  
+2. **Semantic MediaWiki** → søg med SPARQL.  
+3. **VisualEditor + TemplateData** → nem infobox-redigering.  
+4. **Null edit** efter template-ændring → tving cache-opdatering.  
+5. **Backup** med `Special:Export` → XML → gem i Git.
 
 ---
 
-**Du har nu en blueprint til at bygge en ren, skalerbar, brugervenlig wiki.**  
-Start småt. Tilføj én template. Ét category tree. Se det vokse.
+## **Ressourcer**
 
-**God organisering!**
+- [Manual:Namespaces](https://www.mediawiki.org/wiki/Manual:Namespaces)  
+- [Help:Categories](https://www.mediawiki.org/wiki/Help:Categories)  
+- [Help:Templates](https://www.mediawiki.org/wiki/Help:Templates)  
+- [Extension:CategoryTree](https://www.mediawiki.org/wiki/Extension:CategoryTree)
+
+---
+
+**Du har nu alt, hvad du skal bruge for at bygge en professionel, skalerbar, brugervenlig MediaWiki – fra første side til 100.000.**
+
+**Start nu. Opret din første `Template:Navbar`. Se magien ske.**
+
+**Held og lykke med din wiki!**
