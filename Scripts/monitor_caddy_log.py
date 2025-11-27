@@ -11,7 +11,6 @@ init(autoreset=True)
 JSON_PATTERN = re.compile(r'(\{.*\})')
 
 
-
 def parse_log_line(line: str):
     match = JSON_PATTERN.search(line)
     if not match:
@@ -192,6 +191,7 @@ def extract_device(ua: str) -> str:
     if is_mobile:
         return "Mobile Device"
     return "Desktop"
+
 
 # ---------------------------- PADDING HELPERS ---------------------------- #
 
