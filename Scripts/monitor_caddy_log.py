@@ -193,22 +193,35 @@ def extract_device(ua: str) -> str:
 
 # Country cache
 country_cache = {}
-
 def get_country(ip: str) -> str:
     if ip in country_cache:
         return country_cache[ip]
-    try:
-        response = requests.get(f"https://ipapi.co/{ip}/country_name/")
-        if response.status_code == 200:
-            country = response.text.strip()
-            country_cache[ip] = country if country else "Unknown"
-            return country_cache[ip]
-        else:
-            country_cache[ip] = "Unknown"
-            return "Unknown"
-    except:
-        country_cache[ip] = "Unknown"
-        return "Unknown"
+    retries = 0
+    max_retries = 5
+    while retries < max_retries:
+        try:
+            response = requests.get(f"http://ip-api.com/json/{ip}?fields=status,message,country")
+            if response.status_code == 429:
+                time.sleep(2 ** retries)  # Exponential backoff
+                retries += 1
+                continue
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('status') == 'success':
+                    country = data.get('country', 'Unknown')
+                else:
+                    country = 'Unknown'
+                    print(f"Error for IP {ip}: {data.get('message', 'Unknown error')}")
+            else:
+                country = 'Unknown'
+            country_cache[ip] = country
+            return country
+        except Exception as e:
+            print(f"Exception for IP {ip}: {str(e)}")
+            retries += 1
+            time.sleep(2 ** retries)
+    country_cache[ip] = 'Unknown'
+    return 'Unknown'
 
 # ---------------------------- PADDING HELPERS ---------------------------- #
 
