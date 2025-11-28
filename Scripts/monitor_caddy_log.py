@@ -4,12 +4,12 @@ import json
 import time
 import re
 from colorama import init, Fore, Style
+import requests
 
 # Initialize colorama
 init(autoreset=True)
 
 JSON_PATTERN = re.compile(r'(\{.*\})')
-
 
 def parse_log_line(line: str):
     match = JSON_PATTERN.search(line)
@@ -19,7 +19,6 @@ def parse_log_line(line: str):
         return json.loads(match.group(1))
     except json.JSONDecodeError:
         return None
-
 
 # Pre-compile all regexes once – this thing is FAST
 _RE_BOT = re.compile(
@@ -192,24 +191,43 @@ def extract_device(ua: str) -> str:
         return "Mobile Device"
     return "Desktop"
 
+# Country cache
+country_cache = {}
+
+def get_country(ip: str) -> str:
+    if ip in country_cache:
+        return country_cache[ip]
+    try:
+        response = requests.get(f"https://ipapi.co/{ip}/country_name/")
+        if response.status_code == 200:
+            country = response.text.strip()
+            country_cache[ip] = country if country else "Unknown"
+            return country_cache[ip]
+        else:
+            country_cache[ip] = "Unknown"
+            return "Unknown"
+    except:
+        country_cache[ip] = "Unknown"
+        return "Unknown"
 
 # ---------------------------- PADDING HELPERS ---------------------------- #
 
 def format_row(entry, widths):
     """Apply padding to each column with color."""
-    timestamp, status, method, ip, uri, device = entry
+    status_color = Fore.GREEN if int(entry[1]) < 400 else Fore.RED
+    parts = [
+        f"{Fore.WHITE}{entry[0].ljust(widths['timestamp'])}{Style.RESET_ALL}",
+        f"{status_color}{entry[1].ljust(widths['status'])}{Style.RESET_ALL}",
+        f"{Fore.BLUE}{entry[2].ljust(widths['method'])}{Style.RESET_ALL}",
+        f"{Fore.YELLOW}{entry[3].ljust(widths['ip'])}{Style.RESET_ALL}",
+        f"{Fore.MAGENTA}{entry[4].ljust(widths['uri'])}{Style.RESET_ALL}",
+        f"{Fore.RED}{entry[5].ljust(widths['device'])}{Style.RESET_ALL}",
+    ]
+    if len(entry) > 6:
+        parts.append(f"{Fore.WHITE}{entry[6].ljust(widths['country'])}{Style.RESET_ALL}")
+    return " | ".join(parts)
 
-    return (
-        f"{Fore.CYAN}{timestamp.ljust(widths['timestamp'])}{Style.RESET_ALL} | "
-        f"{Fore.GREEN}{str(status).ljust(widths['status'])}{Style.RESET_ALL} | "
-        f"{Fore.BLUE}{method.ljust(widths['method'])}{Style.RESET_ALL} | "
-        f"{Fore.YELLOW}{ip.ljust(widths['ip'])}{Style.RESET_ALL} | "
-        f"{Fore.MAGENTA}{uri.ljust(widths['uri'])}{Style.RESET_ALL} | "
-        f"{Fore.RED}{device.ljust(widths['device'])}{Style.RESET_ALL}"
-    )
-
-
-def calculate_widths(entries):
+def calculate_widths(entries, show_country=False):
     """Find the largest width for each column."""
     widths = {
         "timestamp": 0,
@@ -219,22 +237,24 @@ def calculate_widths(entries):
         "uri": 0,
         "device": 0,
     }
+    if show_country:
+        widths["country"] = 0
 
     for e in entries:
-        timestamp, status, method, ip, uri, device = e
-        widths["timestamp"] = max(widths["timestamp"], len(timestamp))
-        widths["status"] = max(widths["status"], len(str(status)))
-        widths["method"] = max(widths["method"], len(method))
-        widths["ip"] = max(widths["ip"], len(ip))
-        widths["uri"] = max(widths["uri"], len(uri))
-        widths["device"] = max(widths["device"], len(device))
+        widths["timestamp"] = max(widths["timestamp"], len(e[0]))
+        widths["status"] = max(widths["status"], len(e[1]))
+        widths["method"] = max(widths["method"], len(e[2]))
+        widths["ip"] = max(widths["ip"], len(e[3]))
+        widths["uri"] = max(widths["uri"], len(e[4]))
+        widths["device"] = max(widths["device"], len(e[5]))
+        if show_country and len(e) > 6:
+            widths["country"] = max(widths["country"], len(e[6]))
 
     return widths
 
-
 # ------------------------------------------------------------------------ #
 
-def read_last_entries(path, count=20):
+def read_last_entries(path, count, ip_filter=None, endpoint_filter=None, show_country=False):
     entries = []
 
     with open(path, "rb") as f:
@@ -264,17 +284,24 @@ def read_last_entries(path, count=20):
                 method = req.get("method", "-")
                 status = parsed.get("status", "-")
 
+                if ip_filter and ip_filter not in ip:
+                    continue
+                if endpoint_filter and endpoint_filter not in uri:
+                    continue
+
                 ua_raw = req.get("headers", {}).get("User-Agent", ["Unknown"])
                 ua = ua_raw[0] if isinstance(ua_raw, list) else ua_raw
                 device = extract_device(ua)
 
-                entries.append((timestamp, str(status), method, ip, uri, device))
+                if show_country:
+                    country = get_country(ip)
+                    entries.append((timestamp, str(status), method, ip, uri, device, country))
+                else:
+                    entries.append((timestamp, str(status), method, ip, uri, device))
 
     return list(reversed(entries))
 
-
-
-def tail_file(path, widths):
+def tail_file(path, widths, ip_filter=None, endpoint_filter=None, show_country=False):
     with open(path, "r") as f:
         f.seek(0, 2)
 
@@ -296,32 +323,49 @@ def tail_file(path, widths):
             method = req.get("method", "-")
             status = parsed.get("status", "-")
 
+            if ip_filter and ip_filter not in ip:
+                continue
+            if endpoint_filter and endpoint_filter not in uri:
+                continue
+
             ua_raw = req.get("headers", {}).get("User-Agent", ["Unknown"])
             ua = ua_raw[0] if isinstance(ua_raw, list) else ua_raw
             device = extract_device(ua)
 
-            row = (timestamp, str(status), method, ip, uri, device)
-            print(format_row(row, widths))
+            if show_country:
+                country = get_country(ip)
+                row = (timestamp, str(status), method, ip, uri, device, country)
+            else:
+                row = (timestamp, str(status), method, ip, uri, device)
 
+            # Update widths dynamically if any field is longer
+            keys = list(widths.keys())
+            for i, key in enumerate(keys):
+                widths[key] = max(widths[key], len(row[i]))
+
+            print(format_row(row, widths))
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("logfile")
+    parser.add_argument("-n", "--initial-count", type=int, default=20, help="Number of initial requests to display")
+    parser.add_argument("--ip-filter", type=str, help="Filter requests by IP containing this text")
+    parser.add_argument("--endpoint-filter", type=str, help="Filter requests by URI containing this text")
+    parser.add_argument("--show-country", action="store_true", help="Show country column from IP")
     args = parser.parse_args()
 
-    # Load last 20 entries
-    entries = read_last_entries(args.logfile, 20)
+    # Load last entries with filters
+    entries = read_last_entries(args.logfile, args.initial_count, args.ip_filter, args.endpoint_filter, args.show_country)
 
     # Calculate padding
-    widths = calculate_widths(entries)
+    widths = calculate_widths(entries, args.show_country)
 
     # Print last entries (nicely aligned)
     for e in entries:
         print(format_row(e, widths))
 
     # Continue tailing
-    tail_file(args.logfile, widths)
-
+    tail_file(args.logfile, widths, args.ip_filter, args.endpoint_filter, args.show_country)
 
 if __name__ == "__main__":
     main()
