@@ -364,7 +364,7 @@ def tail_file(path, widths, ip_filter=None, endpoint_filter=None, show_country=F
             device = extract_device(ua)
 
             if show_country:
-                country = get_country(ip)
+                country = get_country_and_isp(ip)
                 row = (timestamp, str(status), method, ip, uri, device, country)
             else:
                 row = (timestamp, str(status), method, ip, uri, device)
