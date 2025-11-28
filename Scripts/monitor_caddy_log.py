@@ -191,37 +191,55 @@ def extract_device(ua: str) -> str:
         return "Mobile Device"
     return "Desktop"
 
-# Country cache
+# Country + ISP cache
 country_cache = {}
-def get_country(ip: str) -> str:
+
+def get_country_and_isp(ip: str) -> str:
     if ip in country_cache:
         return country_cache[ip]
+
     retries = 0
     max_retries = 5
+
     while retries < max_retries:
         try:
-            response = requests.get(f"http://ip-api.com/json/{ip}?fields=status,message,country")
+            response = requests.get(
+                f"http://ip-api.com/json/{ip}?fields=status,message,country,isp"
+            )
+
+            # Rate limited — exponential backoff
             if response.status_code == 429:
-                time.sleep(2 ** retries)  # Exponential backoff
+                time.sleep(2 ** retries)
                 retries += 1
                 continue
+
             if response.status_code == 200:
                 data = response.json()
-                if data.get('status') == 'success':
-                    country = data.get('country', 'Unknown')
+
+                if data.get("status") == "success":
+                    country = data.get("country", "Unknown")
+                    isp = data.get("isp", "Unknown")
+
+                    result = f"{country} - {isp}"
                 else:
-                    country = 'Unknown'
                     print(f"Error for IP {ip}: {data.get('message', 'Unknown error')}")
+                    result = "Unknown - Unknown"
             else:
-                country = 'Unknown'
-            country_cache[ip] = country
-            return country
+                result = "Unknown - Unknown"
+
+            country_cache[ip] = result
+            return result
+
         except Exception as e:
             print(f"Exception for IP {ip}: {str(e)}")
             retries += 1
             time.sleep(2 ** retries)
-    country_cache[ip] = 'Unknown'
-    return 'Unknown'
+
+    # After max retries
+    result = "Unknown - Unknown"
+    country_cache[ip] = result
+    return result
+
 
 # ---------------------------- PADDING HELPERS ---------------------------- #
 
@@ -307,7 +325,7 @@ def read_last_entries(path, count, ip_filter=None, endpoint_filter=None, show_co
                 device = extract_device(ua)
 
                 if show_country:
-                    country = get_country(ip)
+                    country = get_country_and_isp(ip)
                     entries.append((timestamp, str(status), method, ip, uri, device, country))
                 else:
                     entries.append((timestamp, str(status), method, ip, uri, device))
