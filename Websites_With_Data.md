@@ -4,5 +4,5 @@
 ### Free icons
 > https://tabler.io/icons
 
-### Postnumre og kordinator:
+### Postnumre og kordinator (kordinatsystem -> EPSG:4326:
 > https://api.dataforsyningen.dk/postnumre
