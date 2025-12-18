@@ -11,6 +11,7 @@
 ### OSINT Websites:
 |Program:|Use:|Url:|
 |:-|:-|:-|
+|Whoxy|WHOIS Lookup API for Domain Names |https://www.whoxy.com/|
 | Have I Been Pwned    | Check if your email or password has been exposed in known data breaches; offers breach notifications | https://haveibeenpwned.com              |
 | Firefox Monitor      | Free breach alerts and monitoring for emails (powered by HIBP)       | https://monitor.firefox.com             |
 | Google Alerts        | Set up free alerts for keywords related to your organization or leaks on the clear web | https://www.google.com/alerts           |
