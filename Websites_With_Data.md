@@ -6,3 +6,6 @@
 
 ### Postnumre og kordinator (kordinatsystem -> EPSG:4326:
 > https://api.dataforsyningen.dk/postnumre
+
+### Academictorrents (data dumps and other stuff)
+> https://academictorrents.com
