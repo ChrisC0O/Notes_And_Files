@@ -57,11 +57,23 @@ BOT_TOKEN="YOUR_BOT_TOKEN"
 CHAT_ID="YOUR_CHAT_ID"
 
 USER="$PAM_USER"
-IP="$PAM_RHOST"
+IP="${PAM_RHOST:-local}"
 HOST="$(hostname)"
 DATE="$(date '+%Y-%m-%d %H:%M:%S')"
 
-MESSAGE="🔐 SSH Login
+case "$PAM_TYPE" in
+  open_session)
+    EVENT="🔐 SSH Login"
+    ;;
+  close_session)
+    EVENT="🔓 SSH Logout"
+    ;;
+  *)
+    exit 0
+    ;;
+esac
+
+MESSAGE="$EVENT
 User: $USER
 Host: $HOST
 IP: $IP
@@ -69,8 +81,7 @@ Time: $DATE"
 
 curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
   -d chat_id="$CHAT_ID" \
-  -d text="$MESSAGE" \
-  -d parse_mode="Markdown" >/dev/null
+  -d text="$MESSAGE" >/dev/null
 ```
 
 Make it executable:
