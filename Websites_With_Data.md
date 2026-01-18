@@ -9,3 +9,6 @@
 
 ### Academictorrents (data dumps and other stuff)
 > https://academictorrents.com
+
+#### Small Datasets: Animals names, top 100 Beers, Relegion names:
+> https://github.com/dariusk/corpora/tree/master
