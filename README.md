@@ -4,3 +4,6 @@
 
 ### Learn how to code? This is a good place to start:
 - [roadmap.sh](https://roadmap.sh)
+
+### Leder efter Danske IT Nyheder?
+> https://itreload.dk
