@@ -16,6 +16,9 @@
 #### Folk song index and Cool Stuff
 > https://balladindex.org
 
+#### Big Websites Tech Stacks:
+> https://www.sdlc.dev/
+
 ---
 
 ## Heres a few GrokAI found:
