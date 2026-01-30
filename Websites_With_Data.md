@@ -15,3 +15,7 @@
 
 #### Dansk Data (man skal ansøge)
 > https://digidata.rigsarkivet.dk/
+
+#### Kæmpe katagoriliste på dansk og engelsk:
+- https://www.google.com/basepages/producttype/taxonomy-with-ids.da-DK.txt
+- https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt
