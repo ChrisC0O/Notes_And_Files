@@ -2,7 +2,8 @@
 > https://www.hagerty.com
 
 ### Free icons
-> https://tabler.io/icons
+- https://tabler.io/icons
+- https://www.flaticon.com/icon-fonts-most-downloaded/5
 
 ### Postnumre og kordinator (kordinatsystem -> EPSG:4326:
 > https://api.dataforsyningen.dk/postnumre
