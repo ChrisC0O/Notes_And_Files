@@ -5,3 +5,6 @@
 
 #### Great collection of wordlist's
 > - https://github.com/kkrypt0nn/wordlists/
+
+#### All Kinds of Payloads:
+> https://github.com/swisskyrepo/PayloadsAllTheThings/
