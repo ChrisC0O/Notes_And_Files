@@ -19,6 +19,9 @@
 #### Big Websites Tech Stacks:
 > https://www.sdlc.dev/
 
+#### Write Screenplays online
+> https://fadex-writing.vercel.app
+
 ---
 
 ## Heres a few GrokAI found:
